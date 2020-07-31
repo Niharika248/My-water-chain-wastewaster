@@ -109,16 +109,37 @@
   color: #fff;
   text-decoration: none;
 }
-.WhiteCard
+.Purchase-View
 {
-  height: 12rem;
-  width:  25rem;
-  background-color: #3896B1;
-  border-top-right-radius: 2.6rem;
-  border-bottom-left-radius: 2.6rem;
+  text-align: center;
+}
+
+.Purchase-View-Heading
+{
+  font-size: 2rem;
+}
+.Purchase-Table
+{
+  padding: 0.5rem 2rem;
+  display: table;
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
+}
+.Purchase-Table-Header
+{
+  display: table-cell;
+  background-color: #E6E9F1;
+  padding: 2% 3.5%;
+  margin: 0 2%;
+  font-size: 1.1rem;
+  font-family: monospace;
+  font-weight: 800;
+}
+.Purchase-Table-Body
+{
+  display: table-cell;
+  background-color: #fff;
+  padding: 1% 1%;
 }
 
 .row
@@ -217,5 +238,16 @@
 {
   height: 2.2rem;
   background-color:#3896B1;
+}
+.WhiteCard
+{
+  height: 12rem;
+  width:  25rem;
+  background-color: #3896B1;
+  border-top-right-radius: 2.6rem;
+  border-bottom-left-radius: 2.6rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 

@@ -4,6 +4,7 @@ import Header from '../coreComponents/Header.jsx';
 import Button from 'react-bootstrap/Button';
 import BarChart from '../coreComponents/BarCharts.js';
 import DonutChart from '../coreComponents/DonutChart.js';
+import PrettyTable from '../coreComponents/PrettyTable.js';
 export default function DisplayScreen(props)
 {
     const [ChartState,changeChartState] = useState(false);
@@ -22,7 +23,7 @@ export default function DisplayScreen(props)
         <Header />
         <Button className="Switch-Button-In-Display" onClick = {switchPurchase}>{ButtonText}</Button>
         {ChartState?<div>
-        Purchase Screen
+        <PrettyTable />
         </div>:<div><div className="Chart">
         <div className="Chart-Candidate"><LineChart /></div>
         <div className="Chart-Candidate"> <BarChart /></div>
