@@ -1,0 +1,221 @@
+/************************************************************MY Files**********************************************************************/
+.block
+{
+  display: inline-block;
+}
+.Chart
+{
+  justify-content: center;
+  width: 100%;
+  display: table;
+
+}
+.Chart-Candidate
+{
+  width: calc(100%/3);
+  display: table-cell;
+  margin: 0;
+  padding: 0;
+}
+.Customize-Logo
+{
+  height: 8rem;
+  width: 8rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+.Display-Chart-Blockchain-Coins
+{
+  font-size: 0.8rem;
+  text-align: center;
+}
+.Display-Chart-Complex-Block
+{
+  display: table;
+  text-align: center;
+}
+.Display-Chart-Allowance-Coins-01
+{
+  font-size: 0.8rem;
+  display: table-cell;
+  text-align: center;
+}
+.Display-Chart-Allowance-Coins-02
+{
+  font-size: 0.8rem;
+  display: table-cell;
+  text-align: center;
+  color: greenyellow;
+}
+.Display-Chart-Expires-On
+{
+  font-size: 0.8rem;
+  text-align: center;
+}
+.Display-Screen-Global-Div
+{
+  text-align: center;
+}
+.FormAligner
+{
+  height: 5rem;
+  width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  
+}
+.ErrorPage-Header
+{
+  background-color: #cf1b1b;
+  color: #900d0d;
+  margin: 0.8rem;
+  width: 25rem;
+  font-family: monospace;
+
+}
+.ErrorPage-Body
+{
+  color: #900d0d;
+  margin: 0.8rem;
+  font-family: 'Courier New', Courier, monospace;
+
+}
+
+.FullSizeContainer
+{
+  width: 100%;
+  display: table;
+}
+
+.HeadingForm
+{
+  color: #1B4855;
+  font-size: 4.5rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  margin-top:16rem;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+.href-AnchorTag
+{
+  color: #fff;
+  text-decoration: none;
+}
+.href-AnchorTag:hover
+{
+  color: #fff;
+  text-decoration: none;
+}
+.WhiteCard
+{
+  height: 12rem;
+  width:  25rem;
+  background-color: #3896B1;
+  border-top-right-radius: 2.6rem;
+  border-bottom-left-radius: 2.6rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.row
+{
+  margin: 0 auto;
+  width: 100%;
+}
+
+.Section-01-Header
+{
+  display: table-cell;
+  width: calc(100%/6);
+  padding: 0.5rem;
+  text-align: center;
+  background-color: #437E37;
+  color: #fff;
+  font-size: 1rem;
+
+}
+
+.Section-02-Header
+{
+  display: table-cell;
+  width: calc(100%/1.5);
+  background-color: #4557A1;
+  font-size: 3rem;
+  padding: 0.5rem;
+  color: #fff;
+  font-family: unset;
+  text-align: center;
+
+}
+.Section-03-Header
+{
+  display: table-cell;
+  width: calc(100%/6);
+  background-color: #4557A1;
+  font-size: 3rem;
+  padding: 0.2rem;
+  color: #fff;
+  font-family: unset;
+
+}
+
+.Section-01-Internal-Content
+{
+  font-size: 1rem;
+}
+.Sub-Section-02-Header
+{
+  margin:2rem;
+}
+
+.Submit-Button
+{
+  margin-left: 4.5rem;
+}
+.Switch-Button-In-Display
+{
+  text-align: center;
+  margin-top: 0.8rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-muted
+{
+  color: rgb(255, 0, 0)!important;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.01rem;
+ font-family: 'Courier New', Courier, monospace;
+}
+.UI-Button
+{
+  /*background-color: #3495B1;*/
+  margin-top: 0.6rem;
+  height: 3rem;
+  width:15rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  transition: transform .2s;
+  background-color: #1B4855;
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+.UI-Button:hover
+{
+  background-color: #BBDBE5;
+  color: #000;
+  transform: scale(1.1);
+}
+
+.whiteSpace
+{
+  height: 2.2rem;
+  background-color:#3896B1;
+}
+

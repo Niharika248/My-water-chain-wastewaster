@@ -1,0 +1,20 @@
+{
+    "Device_ID":"sdfhewsjdhawdiebwdsdkdjvndfdabd",
+    "Registerar_UserName":"Trinty Industries",
+    "Registerar_Email":"trintyindustries@waterautomation.com",
+    "Organisation_Name":"Big Lakes Providers",
+    "Organisation_Email":"support@biglakes.com",
+    "Daily_Allowance":250,
+    "Credits_Generated":10,
+    "Score":[{
+        "timestamp":"2020-07-14 10:30 hrs",
+        "OCPIndex":1.5,
+        "SWAIndex":2.4,
+        "FlowRate":2000,
+        "PLA":1.1,
+        "RCIndex":2.22,
+        "RSIndex":1.22
+    }]
+    "Message":"",
+    "Sesnor_Status":"All Okay"
+}

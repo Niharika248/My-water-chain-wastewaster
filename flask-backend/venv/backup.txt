@@ -1,0 +1,10 @@
+{'_id': ObjectId('5f0e7c3083807dafc93c1f31'), 'timestamp': '2020-07-15 09:16 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3383807dafc93c1f32'), 'timestamp': '2020-07-15 09:16 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3383807dafc93c1f33'), 'timestamp': '2020-07-15 09:16 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3483807dafc93c1f34'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3483807dafc93c1f35'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3483807dafc93c1f36'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3483807dafc93c1f37'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3483807dafc93c1f38'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3583807dafc93c1f39'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}
+{'_id': ObjectId('5f0e7c3583807dafc93c1f3a'), 'timestamp': '2020-07-15 09:17 hrs', 'status': 'Inactive'}

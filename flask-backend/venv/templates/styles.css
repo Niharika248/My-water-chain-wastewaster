@@ -1,0 +1,58 @@
+body
+{
+  /*background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);*/
+  background-image: url("background_Image.png");
+}
+h4
+{
+  font-family: 'Rowdies', cursive;
+  font-size: 1rem;
+}
+.DivCenter
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 20rem;
+}
+.HeaderName
+{
+  font-family: 'Rowdies', cursive;
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 6rem;
+  color: #ffffff;
+}
+.SelectionCard
+{
+  /* height: 5rem;
+  width: 15rem;
+  color: #fff; */
+  text-align: center;
+}
+.specific
+{
+  font-family: 'Rowdies', cursive;
+  font-size: 1rem;
+  font-weight: 100;
+}
+.UI-Button
+{
+  margin-top:0.5rem;
+  height: 3.2rem;
+  width: 12rem;
+  border-radius: 0.9rem;
+  background-color: #3194B0;
+  color: #fff;
+  border-color: #3194B0;
+  font-size: 2rem;
+  transition: transform 0.5s;
+  font-weight: 800;
+}
+.UI-Button:hover
+{
+  background-color: #BBDBE5;
+  color: #000;
+  transform: scale(1.1);
+
+}
