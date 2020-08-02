@@ -1,6 +1,5 @@
 import React from 'react';
 import DashboardDetails from '../constants/WelcomeScreen.js';
-import TabularComponent from '../coreComponents/DisplayChart.jsx';
 export default function Header()
 {
     return(

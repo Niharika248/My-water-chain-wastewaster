@@ -23,12 +23,6 @@ class python_IOT:
         self.RCK = RCK
         self.RSK = RSK
         self.jsonPacket = []
-        self.tempOCPPacket = []
-        self.tempSWAPacket = []
-        self.tempFRCPacket = []
-        self.tempPLSPacket = []
-        self.tempRCKPacket = []
-        self.tempRSKPacket = []
         self.dataPacket = dataPacket
         self.ValidationCheck = validationCheck
         self.CurrentPointer = 0
@@ -50,29 +44,12 @@ class python_IOT:
     def RS_Index(self):
         return(round(random()*RSK,2))
     def Compute_RealTime(self):
-        self.TimeStamp = self.GetTimeStamp()
-        if self.CurrentPointer>self.dataPacket:
-            print("Renewing")
-            self.jsonPacket.append({"timestamp":self.TimeStamp,
-                "OCP Index":round(sum(self.tempOCPPacket)/len(self.tempOCPPacket),2),
-                "SWA Index":round(sum(self.tempSWAPacket)/len(self.tempSWAPacket),2)
-                                    })
-            print(len(self.jsonPacket))
-            #print(self.jsonPacket)
-            self.CurrentPointer = 0
-            self.tempOCPPacket = []
-            self.tempSWAPacket = []
-            self.tempFRCPacket = []
-            self.tempPLSPacket = []
-            self.tempRCKPacket = []
-            self.tempRSKPacket = []
-        self.tempOCPPacket.append(self.OCPIndex())
-        self.tempSWAPacket.append(self.SWAIndex())
-        self.tempFRCPacket.append(self.FlowRate())
-        self.tempPLSPacket.append(self.PLA())
-        self.tempRCKPacket.append(self.RC_Index())
-        self.tempRSKPacket.append(self.RS_Index())
-        self.CurrentPointer+=1
+        datapacket = {"time":self.GetTimeStamp(),"Optical_Color_Index":self.OCPIndex(),
+                        "Solid_Waste_Analysis_Index":self.SWAIndex(),
+                        "FlowRate":self.FlowRate(),"Pressure_Leakage_Alert":self.PLA(),
+                        "Relative_Conductivity":self.RC_Index(),
+                        "Relative_Spectral_Index":self.RS_Index()}
+        return(datapacket)
     def AnalysisBoolean(self):
         for i in range(self.ValidationCheck):
             if self.OCPIndex() not in range(int(self.OCP-self.th),int(self.OCP+self.th)) or self.SWAIndex() not in range(int(self.SWA-self.th),int(self.SWA+self.th)) or self.FlowRate() not in range(int(self.FRC-self.th),int(self.FRC+self.th)) or self.FlowRate() not in range(int(self.FRC-self.th),int(self.FRC+self.th)) or self.PLA() not in range(int(self.PLS-self.th),int(self.PLS+self.th)) or self.RC_Index() not in range(int(self.RCK-self.th),int(self.RCK+self.th)) or self.RS_Index() not in range(int(self.RSK-self.th),int(self.RSK+self.th)):
@@ -84,14 +61,9 @@ class python_IOT:
         print(f"TimeStamp = {self.TimeStamp}\t\tOCP = {self.OCP}\nSWA = {self.SWA}\t\tFRC = {self.FRC}\nPLS = {self.PLS}\tRCK = {self.RCK}\n\tRSK = {self.RSK}")
     def returnJSON(self):
         return self.jsonPacket
-reference = python_IOT()
-
-for i in range(numberOfPacketstoRecieve*dataPacket+1):
-    reference.Compute_RealTime()
-dataFetched = reference.returnJSON()
-print(dataFetched)
-    
-
-
-
-
+##reference = python_IOT()
+##
+##for i in range(numberOfPacketstoRecieve*dataPacket+1):
+##    reference.Compute_RealTime()
+##dataFetched = reference.returnJSON()
+##print(dataFetched)

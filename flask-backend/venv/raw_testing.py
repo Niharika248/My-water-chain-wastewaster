@@ -47,9 +47,12 @@ sheet3 = 'AdminPasswordChange'
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
 
-val = adminDataBase.UpdateMongoByGSheet(sheet3,'PasswordChange','Password',
-                                        'Updated','PasswordChange','Credential_ID',
-                                        'logincredentials')
+adminDataBase.createDevices()
+
+# val = adminDataBase.UpdateMongoByGSheet(sheet3,'PasswordChange','Password',
+#                                         'Updated','PasswordChange','Credential_ID',
+#                                         'logincredentials')
+
 
 ##emailcheck = validator.DuplicateEmailCheck('shifvam@gmail.com','logincredentials')
 ##print(emailcheck)

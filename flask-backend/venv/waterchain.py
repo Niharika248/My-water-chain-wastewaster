@@ -26,6 +26,7 @@ keyIDs = configureKeys()
 
 #Variables
 MongoDB_DatabaseName = 'mywatertech'
+MongoDB_ClientDatabaseName = 'logincredentials'
 gSheetKey = keyIDs["gSheetKey"]
 mongoURI = keyIDs["mongoClientURI"]
 
@@ -52,10 +53,9 @@ def postRegistrationData():
     if resnew["Is_Valid"]:
         security = EnforceSecurity({"password":resnew["Password"],"storage":''})
         storage = security.EncodePassword()
-        print(resnew)
         details = {"Device_ID":str(resnew["_id"]),"Registerar_Email": resnew["Registerar_Email"],"Password":storage}
         response = adminDataBase.LoginDetailsUpdate(details,True,
-                                                    MongoDB_CredentialsName,GSheetStorageType,globalSheetName) 
+                                                    MongoDB_CredentialsName,GSheetStorageType,globalSheetName)
     #print(datapacket["Device_ID"])
     return resnew
 
@@ -76,10 +76,35 @@ def testLoginData():
     #print(f"Data recieved: @ {datapacket}")
     return datapacket
 
+@app.route('/device-fetch', methods=['POST'])
+def FetchFromRaspberryPi():
+    datapacket = request.get_json()
+    res = validator.DeviceLoginValidate(datapacket)
+    if res["Is_Valid"]:
+        pass
+    return res
+
+@app.route('/blockchain-device', methods=['POST'])
+def FetchChain():
+    datapacket = request.get_json()
+    res = validator.DeviceLoginValidate(datapacket)
+    if res["Is_Valid"]:
+        Blockchain_Data = adminDataBase.MongoDBBlockchain(res,MongoDB_ClientDatabaseName)
+        del(Blockchain_Data["_id"])
+        del(Blockchain_Data["Password"])
+        return jsonify(Blockchain_Data)
+    return res
+
+@app.route('/mine-block', methods=['POST'])
+def MineBlock():
+    datapacket = request.get_json()
+    print("Request for change recieved")
+    res = validator.DeviceLoginValidate(datapacket)
+    if datapacket["Is_Valid"]:
+        print("Data packet validated")
+        updateMessage = adminDataBase.MongoDBBlockchainUpdate(datapacket,MongoDB_ClientDatabaseName)
+    return(res)
+
 
 if __name__=="__main__":
     app.run(debug=True)
-
-
-#Feature Addition:
-#for emails also ensure that each registration has unique emails

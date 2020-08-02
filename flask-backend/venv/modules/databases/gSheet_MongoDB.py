@@ -18,6 +18,7 @@ update_MessageCode = 'Updated'
 AdminPasswordChangeRequest = 'AdminPasswordChange'
 AdminPasswordChangeHeader = 'PasswordChange'
 MongoDBPasswordField = 'Password'
+BlockChainConnection = 'blockchain'
 PasswordChangeStaticName = update_MessageCode
 
 #different ways to fetch data:
@@ -39,11 +40,11 @@ class AdminDataBase:
         self.bulksheet = self.sh.worksheet(bulk_associate_sheet_name)
     def getMongoDBCollection(self,collectionName):
         return(self.db[collectionName])
-    def gSheetReflect(self):
-        #This function reads the sheet and accordingly reflects the value in Mongo Database
-        Headers = self.worksheet.row_values(1) #Header indexing starts from 1 and not 0.
-        Device_Status_Index = Headers.index(DeviceStatusHeading)
-        print(f"Reflecting changes based on {Headers[Device_Status_Index]}")
+    # def gSheetReflect(self):
+    #     #This function reads the sheet and accordingly reflects the value in Mongo Database
+    #     Headers = self.worksheet.row_values(1) #Header indexing starts from 1 and not 0.
+    #     Device_Status_Index = Headers.index(DeviceStatusHeading)
+    #     print(f"Reflecting changes based on {Headers[Device_Status_Index]}")
     def GetTimeStamp(self):
         timestamp = str(datetime.datetime.now()).split(":")
         try:return(timestamp[0]+":"+timestamp[1]+ " hrs")
@@ -51,6 +52,14 @@ class AdminDataBase:
     def GetIndexByHeader(self,HeaderString,sheetType):
         Headers = sheetType.row_values(1)
         return(Headers.index(HeaderString))
+    def create_block(self, proof, previous_hash,chainlength):
+        block = {'index': chainlength + 1,
+                 'timestamp': self.GetTimeStamp(),
+                 'proof': proof,
+                 'previous_hash': previous_hash,
+                 'water_data':{}
+                 }
+        return block
     def createDevices(self):
         newEntries = self.bulksheet.get_all_records()[0:]
         StatusIndex = self.GetIndexByHeader("Status",self.bulksheet)
@@ -67,7 +76,8 @@ class AdminDataBase:
                                          "Allowance":entry["Allowance"],
                                          "Device_Status":"Inactive",
                                          "TimeStamp":timestamp})
-                data = [str(_id),entry["Registerar_UserName"],entry["Registerar_Email"],
+                data = [f"{str(_id)}",entry["Registerar_UserName"],
+                        entry["Registerar_Email"],
                         entry["Organisation_Name"],entry["Organisation_Email"],
                         entry["Allowance"],"Inactive","Updated",timestamp]
                 #print(data)
@@ -100,6 +110,7 @@ class AdminDataBase:
         if isAdd:
             collection = self.db[collectionType]
             details["TimeStamp"] = self.GetTimeStamp()
+            details["Block_Chain"] = [self.create_block(proof = 1, previous_hash = '0',chainlength = 0)]
             _id = collection.insert(details)
             data = [str(_id),details["Device_ID"],details["Registerar_Email"],details["TimeStamp"],PasswordChangeStaticName]
             activeSheet = self.sh.worksheet(sheetType)
@@ -139,12 +150,24 @@ class AdminDataBase:
                 collection.update({"Device_ID":IdentificationID},{"$set":newdata})
                 sheet.update_cell(entryIndex,HeaderIndex,StaticName)
             entryIndex+=1
-                
-    
+    def MongoDBBlockchain(self,details,collectionType):
+        collection = self.getMongoDBCollection(collectionType)
+        res = collection.find_one({"Registerar_Email":details["email"]})
+        res["Is_Valid"] = details["Is_Valid"]
+        res["Error_Message"] = details["Error_Message"]
+        return res
+    def MongoDBBlockchainUpdate(self,details,collectionType):
+        collection = self.getMongoDBCollection(collectionType)
+        print(details["Device_ID"])
+        myquery = {"_id": ObjectId(details["Device_ID"])}
+        newvalues = { "$set": {"Block_Chain":details["Block_Chain"]} }
+        print(type(details["Block_Chain"]))
+        result = collection.update_one(myquery,newvalues)
+        print(result.raw_result)
+        print(result.acknowledged)
+        return "OK"
         #sheet.update_cell(locate,index+1,"Active")
-        
+
         #cell = sheet.find("searchCriteria", in_column=1)
 #admin_ops.createDevices()
 #admin_ops.UpdateDataBaseFromGSheets()
-
-

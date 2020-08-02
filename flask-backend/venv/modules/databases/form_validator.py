@@ -27,26 +27,6 @@ ErrorMessages = {
     }
 SuccessMessage = "Registration Successful! you may login now."
 
-###JSON Read
-##def configureKeys():
-##    with open(keyids_json_path) as f:
-##        data = json.load(f)
-##    return data
-##keyIDs = configureKeys()
-##gSheetKey = keyIDs["gSheetKey"]
-##mongoURI = keyIDs["mongoClientURI"]
-##
-###MongoDB
-##client = pymongo.MongoClient(mongoURI)
-##db = client[MongoDB_DatabaseName]
-##collection = db[MongoDB_CollectionName]
-
-#gSheets
-#gc = gspread.service_account(filename = service_account_json_path)
-#sh = gc.open_by_key(gSheetKey)
-
-
-
 class Validator:
     def __init__(self,sh,db):
         self.response = {
@@ -84,6 +64,17 @@ class Validator:
             else:
                 self.loginresponse["Error_Message"] = ErrorMessages["IncorrectPassword"]
         return(self.loginresponse)
+    def DeviceLoginValidate(self,details,MongoDB_CredentialsName=MongoDB_CredentialsName):
+        collection = self.db[MongoDB_CredentialsName]
+        res = self.collection.find_one({"_id": ObjectId(details["Device_ID"])})
+        if res==None:
+            self.loginresponse["Error_Message"] = ErrorMessages["Device_ID"]
+        else:
+            self.loginresponse = self.LoginValidate(details,MongoDB_CredentialsName=MongoDB_CredentialsName)
+            self.loginresponse["email"] = details["email"]
+            self.loginresponse["password"] = details["password"]
+        return(self.loginresponse)
+
     def ValidateData(self,ExternalData):
         device_id = ExternalData["Device_ID"]
         try:
@@ -109,7 +100,7 @@ class Validator:
                 self.response["Password"] = ExternalData["Password"]
                 self.response["Is_Valid"] = True
                 self.response["Error_Message"] = SuccessMessage
-                
+
         except:
             self.response["Error_Message"] = ErrorMessages["Device_ID"]
         return(self.response)
