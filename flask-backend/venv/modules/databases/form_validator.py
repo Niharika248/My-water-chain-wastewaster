@@ -51,6 +51,8 @@ class Validator:
         collection = self.db[MongoDB_CredentialsName]
         email = details["email"]
         password = details["password"]
+        self.loginresponse["email"] = email
+        self.loginresponse["password"] = password
         res = collection.find_one({"Registerar_Email": email})
         if res==None:
             self.loginresponse["Error_Message"] = ErrorMessages["LoginEmailError"]
@@ -66,7 +68,9 @@ class Validator:
         return(self.loginresponse)
     def DeviceLoginValidate(self,details,MongoDB_CredentialsName=MongoDB_CredentialsName):
         collection = self.db[MongoDB_CredentialsName]
-        res = self.collection.find_one({"_id": ObjectId(details["Device_ID"])})
+        #print(MongoDB_CredentialsName)
+        #print(details["Device_ID"])
+        res = collection.find_one({"_id": ObjectId(details["Device_ID"])})
         if res==None:
             self.loginresponse["Error_Message"] = ErrorMessages["Device_ID"]
         else:

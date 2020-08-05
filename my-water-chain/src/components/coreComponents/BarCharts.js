@@ -1,36 +1,28 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-
-function BarChart()
+import HeadersConstant from '../constants/ResponseConstants.js';
+function BarChart(props)
 {
     const Colors = ['rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
     'rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
-    'rgba(255,156,86,0.6)'];
+    'rgba(255,156,86,0.6)','rgba(255,156,86,0.6)','rgba(255,156,86,0.6)'];
     const SecondColors = ['rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
-        'rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
+        'rgba(85,236,86,0.2)','rgba(85,236,86,0.2)','rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
         'rgba(85,236,86,0.2)'];
     const data ={
-        labels: ['Jan','Feb','Mar','Apr','May'],
+        labels: HeadersConstant.Day_Lables,
         datasets:[
             {
-                label: 'Consumption for 2020 (M)',
-                data: [3,2,2,1,3],
-                borderColor: ['rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
-                'rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
-                'rgba(255,156,86,0.6)'],
-                backgroundColor: ['rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
-                'rgba(255,156,86,0.6)','rgba(255,156,86,0.6)',
-                'rgba(255,156,86,0.6)'],
+                label: props.HH1,
+                data: props.Plot1,
+                borderColor: Colors,
+                backgroundColor: Colors,
             },
             {
-                label: 'BlockChain Credits Earned',
-                data: [3,2,5,1,3],
-                borderColor: ['rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
-                'rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
-                'rgba(85,236,86,0.2)'],
-                backgroundColor: ['rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
-                'rgba(85,236,86,0.2)','rgba(85,236,86,0.2)',
-                'rgba(85,236,86,0.2)'],
+                label: props.HH2,
+                data: props.Plot2,
+                borderColor: SecondColors,
+                backgroundColor: SecondColors,
             }
         ]
 
@@ -38,7 +30,7 @@ function BarChart()
     const options = {
         title: {
             display:true,
-            text: 'Bar Chart',
+            text: 'Day Wise Quality/Quantity Performance',
 
         },
         scales: {
@@ -46,7 +38,7 @@ function BarChart()
                 {
                     ticks:{
                         min:0,
-                        max:6,
+                        max:10,
                         stepSize: 1,
                     }
                 }

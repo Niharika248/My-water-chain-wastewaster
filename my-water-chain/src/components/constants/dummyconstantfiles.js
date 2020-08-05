@@ -33,7 +33,7 @@ const DummyDetails = [
     },
 ];
 const TableHeaders = ["Industry Name","Industry-ID","Allowance","Credits"];
-const MyTableHeaders = ["Water Drops","Current Allowance","Extra Allowance","Expiry Date"];
+const MyTableHeaders = ["Water Drops","Current Allowance","Expiry Date"];
 const MyTableDetails = [3,"250 Liters/day",0,"1-August-2022"];
 export default DummyDetails;
 export {TableHeaders,MyTableHeaders,MyTableDetails};

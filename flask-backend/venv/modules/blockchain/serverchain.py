@@ -2,30 +2,41 @@ import datetime
 import hashlib
 import json,requests
 from flask import Flask, jsonify
+import pymongo
 
 class Blockchain:
 
-    def __init__(self,details,endpointUrl):
+    def __init__(self,key,identifier,db,collectionName):
         #details must contain ID Email and Password
         #self.create_block(proof = 1, previous_hash = '0')
         #Request to server to recieve entire jsonify If chain doesn't exist create first block else procceed
-        res = requests.post(endpointUrl, json = details)
-        self.res = res.json()
-        if self.res["Is_Valid"]!=True:
-            print(f"Error in connecting:{res.json()['Error_Message']}")
-            self.chain = []
+        self.collection = db[collectionName]
+        query = {key:identifier}
+        self.ErrorMessage = ""
+        self.chain =[]
+        self.validQuery = False
+        params = {"Transaction_So_Far":1}
+        self.res = self.collection.find_one(query,params)
+        if self.res is None:
+            self.ErrorMessage = "Invalid Query! Kindly recheck the ID."
         else:
-            self.chain = self.res["Block_Chain"]
+            if len(self.res) == 0:
+                self.ErrorMessage = "Invalid Query! Kindly recheck the ID."
+            else:
+                self.chain = self.res["Transaction_So_Far"]
+                self.validQuery = True
+                #print(self.chain)
+                #print(f"chain type:{type(self.chain)}")
 
     def create_block(self, proof, previous_hash,water_data):
         block = {'index': len(self.chain) + 1,
                  'timestamp': str(datetime.datetime.now()),
                  'proof': proof,
                  'previous_hash': previous_hash,
-                 'water_data':water_data
+                 'Transaction_So_Far':water_data
                  }
         self.chain.append(block)
-        return block
+
     def get_previous_block(self):
         return self.chain[-1]
 
@@ -59,30 +70,21 @@ class Blockchain:
             previous_block = block
             block_index += 1
         return True
-    def serverPushRequest(self,credentials,endpointUrl):
-        if self.is_chain_valid():
-            self.res["Block_Chain"] = self.chain
-            self.res["email"] = credentials["email"]
-            self.res["password"] = credentials["password"]
-            #print(self.res["Block_Chain"])
-            res = requests.post(endpointUrl, json = self.res)
-            #print("Update success!")
-            return(res.json())
-        else:
-            print("Invalid-Chain Request")
-
 
     def mine_block(self,waterdetails):
-        previous_block = self.get_previous_block()
-        previous_proof = previous_block['proof']
-        proof = self.proof_of_work(previous_proof)
-        previous_hash = self.hash(previous_block)
-        self.create_block(proof, previous_hash,waterdetails)
+        if self.is_chain_valid():
+            previous_block = self.get_previous_block()
+            previous_proof = previous_block['proof']
+            proof = self.proof_of_work(previous_proof)
+            previous_hash = self.hash(previous_block)
+            self.create_block(proof, previous_hash,waterdetails)
+            print("Mining a block!")
+        else:
+            print("Block-chain disrupted. Chain is not valid. Killing Process...")
+        #Request MongoDB to serve the block
+
     def get_chain():
         return(self.chain)
-
-    def getJsonInitial(self):
-        return(self.chain[-1]["water_data"])
 
 
 #blockchain = Blockchain()

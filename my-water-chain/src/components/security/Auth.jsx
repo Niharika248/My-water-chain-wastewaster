@@ -9,7 +9,7 @@ class Auth
         this.authenticated = true;
         this.jsonData = props;
     }
-    logout(cb)
+    logout()
     {
         this.authenticated = false;
     }

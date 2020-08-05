@@ -1,26 +1,28 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
-
-function LineChart()
+import HeadersConstant from '../constants/ResponseConstants.js';
+function LineChart(props)
 {
+    const Color_01 = ['rgba(0,0,255,0.5)'];
+    const Color_02 = ['rgba(240,160,255,0.4)'];
     const data ={
-        labels: ['Jan','Feb','Mar','Apr','May'],
+        labels: HeadersConstant.Time_Labels,
         datasets:[
             {
-                label: 'Consumption for 2020 (M)',
-                data: [3,2,2,1,3],
-                borderColor: ['rgba(255,206,86,0.2)'],
-                backgroundColor: ['rgba(255,206,86,0.2)'],
-                pointBackgroundColor:['rgba(255,206,86,0.2)'],
-                pointBorderColor:['rgba(255,206,86,0.2)'],
+                label: HeadersConstant.Chart_01_Heading_01,
+                data: props.Plot1,
+                borderColor: Color_01,
+                backgroundColor: Color_01,
+                pointBackgroundColor:Color_01,
+                pointBorderColor:Color_01,
             },
             {
-                label: 'BlockChain Credits Earned',
-                data: [3,2,5,1,3],
-                borderColor: ['rgba(255,236,86,0.2)'],
-                backgroundColor: ['rgba(255,236,86,0.2)'],
-                pointBackgroundColor:['rgba(255,236,86,0.2)'],
-                pointBorderColor:['rgba(255,236,86,0.2)'],
+                label: HeadersConstant.Chart_01_Heading_02,
+                data: props.Plot2,
+                borderColor: Color_02,
+                backgroundColor: Color_02,
+                pointBackgroundColor:Color_02,
+                pointBorderColor:Color_02,
             }
         ]
 
@@ -28,7 +30,7 @@ function LineChart()
     const options = {
         title: {
             display:true,
-            text: 'Line Chart',
+            text: 'SWA and Flow Rate Index',
 
         },
         scales: {
@@ -36,7 +38,7 @@ function LineChart()
                 {
                     ticks:{
                         min:0,
-                        max:6,
+                        max:10,
                         stepSize: 1,
                     }
                 }

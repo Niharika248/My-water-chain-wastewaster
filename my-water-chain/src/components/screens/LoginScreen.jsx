@@ -26,7 +26,7 @@ export default function LoginScreen(props)
   }
   function LoginScreenRenderer(props)
   {
-    return <Form.Group key={props.id} autocomplete="off" controlId={props.controlId}>
+    return <Form.Group key={props.id} autoComplete="off" controlId={props.controlId}>
     <Form.Label>{props.Label}</Form.Label>
     <Form.Control type={props.type} placeholder={props.placeholder}
     value={credentials[props.type]} onChange={e=>{

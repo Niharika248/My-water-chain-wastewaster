@@ -1,3 +1,33 @@
+const HeadersConstant = {
+  Chart_01_Heading_01:"Flow Rate (milli-sq/pixels)",
+  Chart_01_Heading_02:"Solid Waste Index",
+  ColorHeading01:'rgba(234,156,234,0.6)',
+  ColorHeading02:'rgba(255,0,0,0.6)',
+  Heading01Text:'SWA and Flow Rate Index',
+
+
+  Time_Labels:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24],
+  Day_Lables:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+  Water_Quality_Heading:"Water Quality Index",
+  Water_Quantity_Heading:"Water Quantity Index",
+  Color_For_Credits:['rgba(255,156,86,0.6)','rgba(250,100,100,0.6)','rgba(100,250,200,0.6)',
+  'rgba(120,120,120,0.5)','rgba(120,240,120,0.5)','rgba(60,120,240,0.6)','rgba(200,120,120,0.5)','rgba(120,120,250,0.5)'],
+  Color_For_Quality:['rgba(255,156,146,0.6)','rgba(250,100,100,0.6)','rgba(150,156,200,0.6)','rgba(180,250,200,0.6)'],
+  QualityParamsHeading:"Quality Distribution of Different Parameters",
+  CreditsParamHeading:"Monthly Credit Consumption",
+  QualityWords:["Spectral","Conductivity","Solid-Waste","Histogram"],
+  CreditWords:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug"],
+  LineChart01OptionText:'SWA and Flow Rate Index',
+  Chart_02_Heading_01:"Quality Yesterday",
+  Chart_02_Heading_02:"Quality in Last 3 Days",
+  Chart_02_Heading_03:"Quality in Last 7 Days",
+  Chart_02_Heading_04:"Quality in Last 30 Days",
+  
+  StableHeading: "Stable Quality",
+  SelfHeading: "Self Quality"
+};
+export default HeadersConstant;
+
 const ResponseConstant = {
     "Time_Labels":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,24],
     "Day_Lables":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
