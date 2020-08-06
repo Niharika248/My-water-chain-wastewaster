@@ -105,9 +105,10 @@ while validator:
         if not(validator):
             break
         else:
-            OCI = cpush.returnRawData()
+            OCI = pyIot.Compute_RealTime()
+            OCI = client_token.updateData(OCI)
+            OCI = client_token.returnRawData()
             jsonit.Set_01_Values(OCI)
-            industryData = cpush.serverFetchRequest(self,credentials,endpointUrl)
             '''Processing needs to be done here before running the program'''
             #blockchain.serverPushRequest(jsonData,mineblockurl)
         #verifying response here

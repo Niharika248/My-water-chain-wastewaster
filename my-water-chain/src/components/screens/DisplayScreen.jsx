@@ -7,6 +7,8 @@ import BarChart from '../coreComponents/BarCharts.js';
 import DonutChart from '../coreComponents/DonutChart.js';
 import PrettyTable from '../coreComponents/PrettyTable.js';
 import HeadersConstant from '../constants/ResponseConstants.js';
+
+
 export default function DisplayScreen(props)
 {
     function reduce_to_index(data,factor)

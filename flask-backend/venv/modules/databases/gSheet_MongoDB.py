@@ -43,8 +43,10 @@ class AdminDataBase:
         self.sh = sheet
         self.db = client
         self.collection = self.db[MongoDB_CollectionName]
+        self.loginCollection = self.db[MongoDB_LoginCollectionName]
         self.worksheet = self.sh.sheet1
         self.bulksheet = self.sh.worksheet(bulk_associate_sheet_name)
+
     def getMongoDBCollection(self,collectionName):
         return(self.db[collectionName])
 
@@ -200,15 +202,15 @@ class AdminDataBase:
         return res
 
 
-    def MongoDBBlockchainUpdate(self,details,collectionType):
-        collection = self.getMongoDBCollection(collectionType)
-        myquery = {"_id": ObjectId(details["Device_ID"])}
-        newvalues = { "$set": {"Block_Chain":details["Block_Chain"]} }
-        print(type(details["Block_Chain"]))
-        result = collection.update_one(myquery,newvalues)
-        print(result.raw_result)
-        print(result.acknowledged)
-        return "OK"
+    # def MongoDBBlockchainUpdate(self,details,collectionType):
+    #     collection = self.getMongoDBCollection(collectionType)
+    #     myquery = {"_id": ObjectId(details["Device_ID"])}
+    #     newvalues = { "$set": {"Block_Chain":details["Block_Chain"]} }
+    #     print(type(details["Block_Chain"]))
+    #     result = collection.update_one(myquery,newvalues)
+    #     print(result.raw_result)
+    #     print(result.acknowledged)
+    #     return "OK"
 
     def MongoDBBlockchainAll(self,collectionType,deviceID,decision):
         collection = self.getMongoDBCollection(collectionType)
@@ -275,7 +277,17 @@ class AdminDataBase:
         chain[-1]["water_data"]["Self_Data"]["Self_Credits"] = data[1]
         updateField = {"$set":{"Block_Chain":chain}}
         collection.update_one(query,updateField)
-        print("Wow Ye chal gya")
+        #print("Wow Ye chal gya")
+
+    def MongDBBlockchainUpgrade(self,email,chain):
+        query = {"Registerar_Email":email}
+        field ={"Block_Chain":1}
+        collection = self.db[MongoDB_LoginCollectionName]
+        updateField = {"$set":{"Block_Chain":chain}}
+        collection.update_one(query,updateField)
+        print("Query = "+ str(query))
+        #print(chain)
+        print(field)
 
 
 
@@ -335,6 +347,17 @@ class AdminDataBase:
         field={"$set":param}
         self.collection.update_one(query,field)
         return("Update Success")
+
+    def returnQuery(self,key,field):
+        result = self.loginCollection.find_one(key,field)
+        if result is None:
+            print("Query not found")
+        elif len(result)==0:
+            print("Query not found")
+            return({})
+        else:
+            del(result["_id"])
+            return(result)
 
     def experimentationFunction(self,senderID):
         pass

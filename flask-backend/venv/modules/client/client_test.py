@@ -1,19 +1,28 @@
+import requests,json
+from modules.IoT.python_iot import python_IOT as piot
+from modules.blockchain.blockchain import Blockchain
 from modules.jsonDump.jsonDumper import JsonLocator
-import json,requests
 client_secrets_path = r'client_secrets/clientSecrets.json'
+
 def jsonReader(path):
     with open(path) as f:
         data = json.load(f)
     return data
 jsonData = jsonReader(client_secrets_path)
-blockchainurl ='http://localhost:5000/fetch-client-details'
-url = 'http://localhost:5000/device-fetch'
-class Client_Update:
 
-    def __init__(self):
-        self.endpointUrl = url
-        self.accessKey = jsonData
-        self.connection = False
+chain_URL = 'http://localhost:5000/client-fetch-chain'
+previous_chain = 'http://localhost:5000/xnodscdshfewhfewdshef'
+mine_block_URL = 'http://localhost:5000/mine-block'
+class ClientData:
+    def __init__(self,data):
+        self.loginID = data["Device_ID"]
+        self.Registerar_ID = data["Registerar_ID"]
+        self.Email_ID = data["email"]
+        self.password = data["password"]
+        self.ChainUrl = chain_URL
+        self.previouschainurl = previous_chain
+        self.rawJson = data
+        self.chain = []
         self.OCPData = None
         self.SWAData = None
         self.FRCData = None
@@ -22,11 +31,45 @@ class Client_Update:
         self.RSIData = None
         self.TSMData = None
         self.RealTimeData = {}
-        self.res = {}
 
-    def checkConnection(self):
-        res = requests.post(self.endpointUrl, json = self.accessKey)
-        return(res.json())
+
+    def ValidateResponse(self):
+        response = self.PostRequest(self.ChainUrl,self.rawJson)
+        response = response.json()
+        if response["Is_Valid"]:
+            return(True)
+        else:
+            print(f"Invalid operation. Error Message: {repsonse['Error_Message']}")
+            return(False)
+
+    def getPreviousChain(self):
+        #1. Verify the client_token
+        #2. return the chain
+        if self.ValidateResponse():
+            key = {"Registerar_Email":self.Email_ID}
+            field = {"Block_Chain":1}
+            validationPacket = {"Validate":self.rawJson}
+            result = self.PostRequest(self.previouschainurl,{"key":key,"field":field,"encrypt":validationPacket})
+            self.chain = result.json()["Block_Chain"]
+            return(True)
+        else:
+            return(False)
+
+
+    def PostRequest(self,requesturl,requestjson):
+        response = requests.post(requesturl, json = requestjson)
+        return(response)
+
+    def AverageData(self,existingData,UpcomingData):
+        if existingData is None:
+            return(UpcomingData)
+        else:
+            return(0.5*(existingData+UpcomingData))
+
+    def returnRawData(self):
+        OCI_Array = [self.OCPData,self.SWAData,self.PLAData,
+        self.RCIData,self.RSIData,self.FRCData,0]
+        return(OCI_Array)
 
     def updateData(self,realtime_jsonData):
         self.TSMData = realtime_jsonData["time"]
@@ -37,41 +80,62 @@ class Client_Update:
         self.RCIData = self.AverageData(self.OCPData,realtime_jsonData["Relative_Conductivity"])
         self.RSIData = self.AverageData(self.OCPData,realtime_jsonData["Relative_Spectral_Index"])
 
-    def returnRawData(self):
-        OCI_Array = [self.OCPData,self.SWAData,self.PLAData,
-        self.RCIData,self.RSIData,self.FRCData,0]
-        return(OCI_Array)
-
-    def serverFetchRequest(self,credentials,endpointUrl):
-        self.res["email"] = credentials["email"]
-        self.res["password"] = credentials["password"]
-        self.res["Device_ID"] = credentials["Device_ID"]
-        self.res["R_ID"] = credentials["Registerar_ID"]
-        res = requests.post(endpointUrl, json = self.res)
-        print(res.json())
-
-    # def PackAndSend(self,hourContext,datapacket):
-    #     # datapacket = {"time":self.TSMData,"Optical_Color_Index":self.OCPData,
-    #     #                 "Solid_Waste_Analysis_Index":self.SWAData,
-    #     #                 "FlowRate":self.FRCData,"Pressure_Leakage_Alert":self.PLAData,
-    #     #                 "Relative_Conductivity":self.RCIData,
-    #     #                 "Relative_Spectral_Index":self.RSIData,"Hour":hourContext}
-    #     res = requests.post(self.endpointUrl, json = datapacket)
-
-    def AverageData(self,existingData,UpcomingData):
-        if existingData is None:
-            return(UpcomingData)
-        else:
-            return(0.5*(existingData+UpcomingData))
-
-# test = JsonLocator(None)
-# print(test.getHourOfDay())
-# print(test.getDayofWeek())
-# print(test.getMonthofYear())
-# print(test.getTodayDate())
+    def Mine_Block(self,mine_block_url,block):
+        res = self.PostRequest(mine_block_url,{"block":block,"credentials":self.rawJson})
 
 
 
-cpush = Client_Update()
+client_token = ClientData(jsonData)
+client_token.getPreviousChain()
+client_chain = Blockchain(client_token.chain)
 
-cpush.serverFetchRequest(jsonData,blockchainurl)
+pyIot = piot()
+jsonInitial = client_chain.getJsonInitial()
+jsonit = JsonLocator(jsonInitial)
+
+hour = int(pyIot.GetTimeStamp().split(" ")[1].split(":")[0])
+validator = client_token.ValidateResponse() and client_chain.is_chain_valid()
+
+if validator:
+    print("Data Read is active now!")
+    OCI = pyIot.Compute_RealTime()
+    OCI = client_token.updateData(OCI)
+    OCI = client_token.returnRawData()
+    jsonit.Set_01_Values(OCI)
+    #print(jsonit.jsonFile)
+    client_chain.mine_block(jsonit.jsonFile)
+    if client_chain.is_chain_valid():
+        client_token.Mine_Block(mine_block_URL,client_chain.chain)
+
+    else:
+        print("Invalid Chain")
+else: print("Aborting...")
+
+
+
+
+# while validator:
+#     current_hour = int(pyIot.GetTimeStamp().split(" ")[1].split(":")[0])
+#     if hour<current_hour:
+#         print(f"Consolidating @ time = {current_hour}")
+#         # Averaging code here
+#         validator = client_token.ValidateResponse() and client_chain.is_chain_valid()
+#         if not(validator):
+#             print("Aborting...")
+#             break
+#         else:
+#             OCI = pyIot.returnJSON()
+#             OCI = client_token.updateData(OCI)
+#             OCI = client_token.returnRawData()
+#             jsonit.Set_01_Values(OCI)
+#             industryData = cpush.serverFetchRequest(self,credentials,endpointUrl)
+#             '''Processing needs to be done here before running the program'''
+#             #blockchain.serverPushRequest(jsonData,mineblockurl)
+#         #verifying response here
+#         #Re-assigning hour here
+#         hour = hour + 1
+#         print(f"Updating time hour = {hour} from hour = {hour-1}")
+#     else:
+#         datapacket = pyIot.Compute_RealTime()
+#         cpush.updateData(datapacket)
+# print("Connection lost to device or Invalid login Attempt! Error Message:\n\t{msg}")

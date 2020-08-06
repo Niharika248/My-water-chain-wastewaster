@@ -30,10 +30,10 @@ class JsonLocator:
         self.jsonFile["Quality_Analysis"]["SWI"] = OCI[1]
         self.jsonFile["Quality_Analysis"]["CDI"] = OCI[3]
         self.jsonFile["Quality_Analysis"]["SPI"] = OCI[4]
-        self.jsonFile["Water_Quality_Index_Day"][hour] = (self.qualityConstant*((OCI[3]*OCI[4])/(OCI[1]*OCI[2])))
-        self.jsonFile["Water_Quantity_Index_Day"][hour] = (self.qualityConstant*OCI[5])
+        # self.jsonFile["Water_Quality_Index_Day"][hour] = (self.qualityConstant*((OCI[3]*OCI[4])/(OCI[1]*OCI[2])))
+        # self.jsonFile["Water_Quantity_Index_Day"][hour] = (self.qualityConstant*OCI[5])
         self.jsonFile["Solid_Waste_Analysis_Index"][hour] = OCI[1]
-        self.jsonFile["Pressure_Leakage_Alert_Index"][hour] = OCI[2]
+        self.jsonFile["Pressure_Leakage_Alert"][hour] = OCI[2]
         self.jsonFile["Relative_Conductivity"][hour] = OCI[3]
         self.jsonFile["Relative_Spectral_Index"][hour] = OCI[4]
         self.jsonFile["FlowRate"][hour] = OCI[5]
@@ -42,18 +42,3 @@ class JsonLocator:
                 self.jsonFile["Credit_Consumption_History"].append(0)
 
         self.jsonFile["Credit_Consumption_History"][self.getMonthofYear()-1]+=OCI[6] #OCI-06 is always 0 unless a purchase is confirmed
-
-    def Set_02_Values(self,alldata):
-        for data in alldata:
-            self.jsonFile["Industry_Name"].append(data["Registerar_UserName"])
-            self.jsonFile["Industry_ID"].append(data["_id"])
-            self.jsonFile["Industry_Allowance"].append(data["Allowance"])
-            self.jsonFile["Industry_Credits"].append(data["Credits"])
-
-    def Set_03_Values(self,data,creditRequest):
-        self.jsonFile["Self_Data"]["Self_Credits"] = data["Credits"]
-        self.jsonFile["Self_Data"]["Self_Allowance"] = data["Allowance"]
-        if creditRequest:
-            self.jsonFile["Self_Data"]["Expiry_Date"] = self.getTodayDate()
-        else:
-            self.jsonFile["Self_Data"]["Expiry_Date"] = data["Expiry_Date"]

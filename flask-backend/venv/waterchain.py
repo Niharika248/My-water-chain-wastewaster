@@ -89,7 +89,7 @@ def fetchLoginData():
         #print(block_response)
         block_response["industry_response"] = industry_response
         block_response["self_details"] = self_details
-        print(block_response)
+        #print(block_response)
         return jsonify(block_response)
     else:
         return(result)
@@ -108,10 +108,11 @@ def fetchLoginData():
 def FetchChain():
     datapacket = request.get_json()
     res = validator.DeviceLoginValidate(datapacket)
+    del(Blockchain_Data["_id"])
+    del(Blockchain_Data["Password"])
+
     if res["Is_Valid"]:
         Blockchain_Data = adminDataBase.MongoDBBlockchain(res,MongoDB_ClientDatabaseName)
-        del(Blockchain_Data["_id"])
-        del(Blockchain_Data["Password"])
         return jsonify(Blockchain_Data)
     return res
 
@@ -119,10 +120,11 @@ def FetchChain():
 def MineBlock():
     datapacket = request.get_json()
     print("Request for change recieved")
-    res = validator.DeviceLoginValidate(datapacket)
-    if datapacket["Is_Valid"]:
+    res = validator.DeviceLoginValidate(datapacket["credentials"])
+    if res["Is_Valid"]:
         print("Data packet validated")
-        updateMessage = adminDataBase.MongoDBBlockchainUpdate(datapacket,MongoDB_ClientDatabaseName)
+        updateMessage = adminDataBase.MongDBBlockchainUpgrade(res["email"],datapacket["block"])
+        print("WAAO")
     return(res)
 
 @app.route('/fetch-client-details', methods=['POST'])
@@ -138,12 +140,13 @@ def FetchAll():
 
     else:
         industryPacket={"Empty":"Empty Packet, Invalid Credentials."}
-    return(jsonify(result))
+    return(jsonify(res))
 
 @app.route('/make-a-transaction', methods=['POST'])
 def Make_A_Transaction():
     datapacket = request.get_json()
     res = validator.LoginValidate(datapacket)
+    LoginValidateObject = res
     senderEmail = datapacket["email"]
     if res["Is_Valid"]:
         senderID = adminDataBase.returnRegister_ID_FromEmail(senderEmail)
@@ -169,14 +172,39 @@ def Make_A_Transaction():
                 adminDataBase.requestUpdate("_id",ObjectId(recieverID),
                 {"Transaction_So_Far":recieveObject.chain})
                 print("Success!!!!!")
-                return(jsonify({"Yes":"Transaction Successful!"}))
-
+                if LoginValidateObject["Is_Valid"]:
+                    block_response = adminDataBase.MongoDBBlockchain(LoginValidateObject,MongoDB_ClientDatabaseName)
+                    industry_response,self_details = adminDataBase.MongoDBPrettyTableFetch(block_response["email"])
+                    #print(block_response)
+                    block_response["industry_response"] = industry_response
+                    block_response["self_details"] = self_details
+                    return jsonify(block_response)
+                else:
+                    return(result)
+                return result
             else:
                 return("Blockchain Disruption: Killing the process... Transaction Failed. Chain Invalid. Something is really very wrong.")
             # also check for chain validity before and after mining the block
         else:
             return(f"Transaction failed because of {res['Message']} Kindly retry.")
 
+
+@app.route('/client-fetch-chain', methods=['POST'])
+def Client_Fetch_Chain():
+    datapacket = request.get_json()
+    res = validator.DeviceLoginValidate(datapacket)
+    return(res)
+#/xnodscdshfewhfewdshef
+@app.route('/xnodscdshfewhfewdshef', methods=['POST'])
+def xnodscdshfewhfewdshef():
+    datapacket = request.get_json()
+    res = validator.DeviceLoginValidate(datapacket["encrypt"]["Validate"])
+    if res["Is_Valid"]:
+        response = adminDataBase.returnQuery(datapacket["key"],datapacket["field"])
+        return(response)
+    else:
+        print("Invalid-operation")
+    return(res)
 #Update Admin Sheet from Database
 
 if __name__=="__main__":

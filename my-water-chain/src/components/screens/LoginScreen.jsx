@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ErrorCodes from '../constants/ErrorCodes.jsx';
 import LoginDetails from '../constants/LoginDetails.jsx';
+import Spinner from 'react-bootstrap/Spinner';
 import Auth from '../security/Auth.jsx';
 export default function LoginScreen(props)
 {
@@ -10,6 +11,7 @@ export default function LoginScreen(props)
     email:"",
     password:""
   });
+  const [loading,setloading] =useState(false);
   const [credentialMessage,setcredentialMessage]=useState({
     email:"",
     password:""
@@ -42,8 +44,21 @@ export default function LoginScreen(props)
   return(
     <Form className="FormAligner">
     {LoginDetails.map(LoginScreenRenderer)}
-    <Button onClick={async(e)=>{
+    {loading?<div>
+
+      <Button variant="primary" disabled>
+    <Spinner
+      as="span"
+      animation="border"
+      size="sm"
+      role="status"
+      aria-hidden="true"
+    />
+    <span className="sr-only">Loading...</span>
+    </Button> 
+      </div>:<div><Button onClick={async(e)=>{
       e.preventDefault();
+      setloading(true);
       const JSONString = credentials;
       const response = await fetch('http://localhost:5000/login',{
         method: 'POST',
@@ -62,6 +77,7 @@ export default function LoginScreen(props)
             body:JSON.stringify(JSONString)
           }).then(response=>response.json()).then((jsonBackend)=>{
             //properties-> jsonBackend
+            setloading(false);
             Auth.login(jsonBackend);
             props.history.push("/login-props-test");
           });
@@ -69,10 +85,11 @@ export default function LoginScreen(props)
         }
         else
         {
+          setloading(false);
           alert("Invalid Credentials! Error Message: "+jsonData["Error_Message"]);
         }
       });
-    }}>Submit</Button>
+    }}>Submit</Button></div>}
     </Form>
   );
 }

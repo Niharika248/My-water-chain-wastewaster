@@ -5,17 +5,8 @@ from flask import Flask, jsonify
 
 class Blockchain:
 
-    def __init__(self,details,endpointUrl):
-        #details must contain ID Email and Password
-        #self.create_block(proof = 1, previous_hash = '0')
-        #Request to server to recieve entire jsonify If chain doesn't exist create first block else procceed
-        res = requests.post(endpointUrl, json = details)
-        self.res = res.json()
-        if self.res["Is_Valid"]!=True:
-            print(f"Error in connecting:{res.json()['Error_Message']}")
-            self.chain = []
-        else:
-            self.chain = self.res["Block_Chain"]
+    def __init__(self,chain):
+        self.chain = chain
 
     def create_block(self, proof, previous_hash,water_data):
         block = {'index': len(self.chain) + 1,

@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import RegistrationControl from '../constants/RegistrationFormControlOptions';
+import Spinner from 'react-bootstrap/Spinner';
 export default function RegisterScreen()
 {
   const [credentials,setcredentials] = useState({
@@ -13,6 +14,8 @@ export default function RegisterScreen()
     Password:"",
     Reenter_Password:""
   });
+
+  const [loading,setloading] = useState(false);
 
   function MapFields(props)
   {
@@ -34,8 +37,18 @@ export default function RegisterScreen()
   return(
     <Form className="FormAligner">
     {RegistrationControl.map(MapFields)}
-    <Button onClick={async(e)=>{
+    {loading?<Button variant="primary" disabled>
+    <Spinner
+      as="span"
+      animation="border"
+      size="sm"
+      role="status"
+      aria-hidden="true"
+    />
+    <span className="sr-only">Loading...</span>
+    </Button>:<Button onClick={async(e)=>{
       e.preventDefault();
+      setloading(true);
       const JSONString = credentials;
       const response = await fetch('http://localhost:5000/register',{
         method: 'POST',
@@ -44,9 +57,10 @@ export default function RegisterScreen()
         },
         body:JSON.stringify(JSONString)
       }).then(response=>response.json()).then((jsonData)=>{
+        setloading(false);
         alert(jsonData["Error_Message"]);
       });
-    }}>Submit</Button>
+    }}>Submit</Button>}
     </Form>
   );
 }
