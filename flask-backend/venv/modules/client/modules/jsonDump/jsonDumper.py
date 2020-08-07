@@ -23,8 +23,8 @@ class JsonLocator:
         newDate = datetime.datetime.fromtimestamp(timestamp)
         return(datetime.datetime.strptime(str(newDate).split(" ")[0], "%Y-%m-%d").strftime("%d-%B-%Y"))
 
-    def Set_01_Values(self,OCI):
-        hour = self.getHourOfDay()
+    def Set_01_Values(self,OCI,hour):
+        #hour = self.getHourOfDay()
         self.jsonFile["Optical_Color_Index"][hour] = OCI[0]
         self.jsonFile["Quality_Analysis"]["HSI"] = OCI[0]
         self.jsonFile["Quality_Analysis"]["SWI"] = OCI[1]

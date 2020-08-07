@@ -44,11 +44,8 @@ class python_IOT:
     def RS_Index(self):
         return(round(random()*RSK,2))
     def Compute_RealTime(self):
-        datapacket = {"time":self.GetTimeStamp(),"Optical_Color_Index":self.OCPIndex(),
-                        "Solid_Waste_Analysis_Index":self.SWAIndex(),
-                        "FlowRate":self.FlowRate(),"Pressure_Leakage_Alert":self.PLA(),
-                        "Relative_Conductivity":self.RC_Index(),
-                        "Relative_Spectral_Index":self.RS_Index()}
+        datapacket = [self.OCPIndex(),self.SWAIndex(),self.FlowRate(),self.PLA(),
+        self.RC_Index(),self.RS_Index(),0,self.GetTimeStamp()]
         return(datapacket)
     def AnalysisBoolean(self):
         for i in range(self.ValidationCheck):

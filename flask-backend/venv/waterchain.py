@@ -2,7 +2,7 @@
 from flask import Flask,jsonify,request
 import datetime
 import gspread
-import json
+import json,hashlib
 import pymongo
 import pandas as pd
 from flask_cors import CORS
@@ -10,6 +10,7 @@ from modules.databases.gSheet_MongoDB import AdminDataBase
 from modules.databases.form_validator import Validator
 from modules.encoding.password_encoder import EnforceSecurity
 from modules.blockchain.serverchain import Blockchain
+from modules.blockchain.blockchain import Blockchain as Bcs
 from bson.objectid import ObjectId
 app = Flask(__name__)
 CORS(app)
@@ -53,7 +54,6 @@ db = client[MongoDB_DatabaseName]
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
 print("Successfully configured all the admin Databases and GSheets.")
-
 
 @app.route('/register', methods=['POST'])
 def postRegistrationData():
@@ -194,13 +194,41 @@ def Client_Fetch_Chain():
     datapacket = request.get_json()
     res = validator.DeviceLoginValidate(datapacket)
     return(res)
+
+@app.route('/validate-chain-and-upload', methods=['POST'])
+def Validate_Chain_And_Upload():
+    datapacket = request.get_json()
+    #print(datapacket["chain"])
+    res = validator.DeviceLoginValidate(datapacket["credentials"])
+    #chain = datapacket["chain"]
+    # param = {"Block_Chain":chain}
+    # key = "Registerar_Email"
+    # IdentificationID = datapacket["credentials"]["email"]
+    # print(f"here we go: {key}:{IdentificationID}")
+    #adminDataBase.requestUpdateClient(key,IdentificationID,param)
+    if res["Is_Valid"]:
+        blockchain = Bcs(datapacket["chain"])
+        if(blockchain.is_chain_valid(blockchain.chain)):
+            chain = blockchain.chain
+            param = {"Block_Chain":chain}
+            key = "Registerar_Email"
+            IdentificationID = datapacket["credentials"]["email"]
+            if adminDataBase.requestUpdateClient(key,IdentificationID,param)==True:
+                print("Mine Success: True")
+                return("Blockchain Updated successfully!")
+            else:
+                return("Internet issue")
+        return("Blockchain corrupted! Sorry")
+
+
 #/xnodscdshfewhfewdshef
 @app.route('/xnodscdshfewhfewdshef', methods=['POST'])
 def xnodscdshfewhfewdshef():
     datapacket = request.get_json()
-    res = validator.DeviceLoginValidate(datapacket["encrypt"]["Validate"])
+    res = validator.DeviceLoginValidate(datapacket["encrypt"])
     if res["Is_Valid"]:
         response = adminDataBase.returnQuery(datapacket["key"],datapacket["field"])
+        response["Is_Valid"] = True
         return(response)
     else:
         print("Invalid-operation")

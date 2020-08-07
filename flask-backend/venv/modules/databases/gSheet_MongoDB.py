@@ -348,6 +348,12 @@ class AdminDataBase:
         self.collection.update_one(query,field)
         return("Update Success")
 
+    def requestUpdateClient(self,key,IdentificationID,param):
+        query={key:IdentificationID}
+        field={"$set":param}
+        self.loginCollection.update_one(query,field)
+        return(True)
+
     def returnQuery(self,key,field):
         result = self.loginCollection.find_one(key,field)
         if result is None:
