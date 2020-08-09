@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../junk/Header.jsx';
 import Authentication from '../AuthenticateCard.jsx';
+import Footer from '../junk/Footer.jsx';
 import { withRouter } from 'react-router-dom';
-
 function StarterScreen(props) {
   function loginClick()
     {
@@ -21,7 +21,8 @@ function StarterScreen(props) {
       <Authentication text="Login" onClickaction={loginClick} />
       <Authentication text="Register" onClickaction={registerClick}/>
       </div>
-    </div>
+      <Footer />
+      </div>
   );
 }
 

@@ -5,6 +5,8 @@ import ErrorCodes from '../constants/ErrorCodes.jsx';
 import LoginDetails from '../constants/LoginDetails.jsx';
 import Spinner from 'react-bootstrap/Spinner';
 import Auth from '../security/Auth.jsx';
+import Footer from '../junk/Footer';
+
 export default function LoginScreen(props)
 {
   const [credentials,setCredentials] = useState({
@@ -42,11 +44,12 @@ export default function LoginScreen(props)
   </Form.Group>;
   }
   return(
+    <div>
     <Form className="FormAligner">
     {LoginDetails.map(LoginScreenRenderer)}
-    {loading?<div>
+    {loading?<div className="UI-Aligner">
 
-      <Button variant="primary" disabled>
+      <Button className="UI-Button-Click" variant="primary" disabled>
     <Spinner
       as="span"
       animation="border"
@@ -56,7 +59,7 @@ export default function LoginScreen(props)
     />
     <span className="sr-only">Loading...</span>
     </Button> 
-      </div>:<div><Button onClick={async(e)=>{
+      </div>:<div className="UI-Aligner"><Button className="UI-Button-Click" onClick={async(e)=>{
       e.preventDefault();
       setloading(true);
       const JSONString = credentials;
@@ -89,7 +92,9 @@ export default function LoginScreen(props)
           alert("Invalid Credentials! Error Message: "+jsonData["Error_Message"]);
         }
       });
-    }}>Submit</Button></div>}
+    }}>Login</Button></div>}
     </Form>
+    <Footer />
+    </div>
   );
 }

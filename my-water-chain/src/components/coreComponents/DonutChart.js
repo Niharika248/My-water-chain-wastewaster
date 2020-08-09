@@ -20,7 +20,7 @@ function DonutChart(props)
     const options = {
         title: {
             display:true,
-            text: 'Donut Chart',
+            text: props.Texts,
 
         }
     }

@@ -1,4 +1,5 @@
 /************************************************************MY Files**********************************************************************/
+
 .block
 {
   display: inline-block;
@@ -88,7 +89,27 @@
   font-family: 'Courier New', Courier, monospace;
 
 }
-
+.FooterAligner
+{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  bottom: 2%;
+  position: absolute;
+  width: 100%;
+}
+.FooterElement
+{
+  width: calc(100%/3);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 18px;
+  color: #1B4855;
+  font-weight: 800;
+}
+.Footer03
+{
+  text-align: right;
+}
 .FullSizeContainer
 {
   width: 100%;
@@ -235,7 +256,7 @@
 {
   display: table-cell;
   width: calc(100%/1.5);
-  background-color: #4557A1;
+  background-color: #3796B1;
   font-size: 3rem;
   padding: 0.5rem;
   color: #fff;
@@ -247,7 +268,7 @@
 {
   display: table-cell;
   width: calc(100%/6);
-  background-color: #4557A1;
+  background-color: #3796B1;
   font-size: 3rem;
   padding: 0.2rem;
   color: #fff;
@@ -302,6 +323,7 @@
   background-color: #1B4855;
   color: #fff;
   font-size: 1.8rem;
+  border-color: #fff;
 }
 
 .UI-Button:hover
@@ -309,22 +331,44 @@
   background-color: #BBDBE5;
   color: #000;
   transform: scale(1.1);
+  border-color: #fff;
+}
+
+.UI-Aligner
+{
+  text-align: center!important;
+}
+
+.UI-Button-Click
+{
+  background-color: #3796B1!important;
+  color: #fff!important;
+  transition: transform .2s!important;
+  border-color: #fff!important;
+
+}
+
+.UI-Button-Click:hover
+{
+  background-color: #BBDBE5!important;
+  color: #000!important;
+  transform: scale(1.1)!important;
+  border-color: #fff!important;
 }
 
 .whiteSpace
 {
   height: 2.2rem;
-  background-color:#3896B1;
+  /*background-color:#3896B1;*/
 }
 .WhiteCard
 {
   height: 12rem;
   width:  25rem;
-  background-color: #3896B1;
+  /*background-color: #3896B1;*/
   border-top-right-radius: 2.6rem;
   border-bottom-left-radius: 2.6rem;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
-

@@ -59,7 +59,9 @@ export default function DisplayScreen(props)
     }
     return(<div className="Display-Screen-Global-Div">
         <Header />
-        <Button className="Switch-Button-In-Display" onClick = {switchPurchase}>{ButtonText}</Button>
+        <div className="UI-Aligner"><Button className="Switch-Button-In-Display UI-Button-Click"
+        onClick = {switchPurchase}>{ButtonText}</Button>
+        </div>
         {ChartState?<div>
         <PrettyTable Data={props.industry_response} selfData = {props.self_details} Email = {props.email}/>
         </div>:<div><div className="Chart">
@@ -69,7 +71,7 @@ export default function DisplayScreen(props)
         <div className="Chart-Candidate"> <BarChart Plot1 = {jsonData.Water_Quality_Index_Day}
         Plot2={QuantityIndexed} HH1={HeadersConstant.Water_Quality_Heading}
         HH2 ={HeadersConstant.Water_Quantity_Heading}/></div>
-        <div className="Chart-Candidate"><DonutChart ColorSchema={HeadersConstant.Color_For_Credits}
+        <div className="Chart-Candidate"><DonutChart ColorSchema={HeadersConstant.Color_For_Credits} Texts={"Quality Index"}
         Data={[jsonData.Quality_Analysis.SPI,jsonData.Quality_Analysis.CDI,jsonData.Quality_Analysis.SWI,
             jsonData.Quality_Analysis.HSI]} Label={HeadersConstant.QualityParamsHeading}
             Words={HeadersConstant.QualityWords} LabelTime = {HeadersConstant.Time_Labels}/></div>
@@ -83,7 +85,7 @@ export default function DisplayScreen(props)
         <div className="Chart-Candidate"> <BarChart Plot1 = {jsonData.Stable_Comparision.Stable_Quality}
         Plot2={jsonData.Stable_Comparision.Self_Quality} HH1={HeadersConstant.StableHeading} HH2={HeadersConstant.SelfHeading}/></div>
         <div className="Chart-Candidate"><DonutChart
-        Data={jsonData.Credit_Consumption_History} Label={HeadersConstant.CreditsParamHeading}
+        Data={jsonData.Credit_Consumption_History} Label={HeadersConstant.CreditsParamHeading} Texts={"Credit Consumption"}
             Words={HeadersConstant.CreditWords}/></div>
         </div>
         </div>

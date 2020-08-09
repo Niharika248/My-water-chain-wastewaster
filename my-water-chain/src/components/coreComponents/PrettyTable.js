@@ -83,7 +83,7 @@ function PrettyTable(props)
         value={details.Password} onChange={val=>{setpurchaseDetails({...details, ["Password"]: val.target.value});}}/>
       </Form.Group>
         </div>
-        {loaded?<Button className="Purchase-Reuqester"
+        {loaded?<div><Button className="Purchase-Reuqester"
         variant="primary" disabled>
         <Spinner
           as="span"
@@ -93,7 +93,7 @@ function PrettyTable(props)
           aria-hidden="true"
         />
         <span className="sr-only">Loading...</span>
-      </Button>:<Button className="Purchase-Reuqester" onClick={async(e)=>{
+      </Button></div>:<div className="UI-Aligner"><Button className="Purchase-Reuqester UI-Button-Click" onClick={async(e)=>{
         e.preventDefault();
         loading(true);
         const JSONString = {
@@ -115,10 +115,10 @@ function PrettyTable(props)
         console.log(props);
         Auth.login(content);
         history.push("/login-props-test");
-      }}>Purchase</Button>
+      }}>Purchase</Button></div>
     }
-        </div>:<div className="Purchase-Reuqester">
-        <Button className = "Purchase-Requester-Column" onClick={
+        </div>:<div className="Purchase-Reuqester UI-Aligner">
+        <Button className = "Purchase-Requester-Column UI-Button-Click" onClick={
             e=>{
                 e.preventDefault();
                 updatePasswordPrompt(true);

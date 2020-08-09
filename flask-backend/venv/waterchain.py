@@ -72,6 +72,7 @@ def postRegistrationData():
 @app.route('/login', methods=['POST'])
 def postLoginData():
     datapacket = request.get_json()
+    #print(datapacket)
     result = validator.LoginValidate(datapacket)
     if result["Is_Valid"]:
         print("Login Success")

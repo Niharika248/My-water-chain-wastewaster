@@ -57,6 +57,7 @@ class Validator:
         if res==None:
             self.loginresponse["Error_Message"] = ErrorMessages["LoginEmailError"]
         else:
+            #print(res)
             storage = res["Password"]
             validatePW = EnforceSecurity({"password":password,
                                                    "storage":storage})

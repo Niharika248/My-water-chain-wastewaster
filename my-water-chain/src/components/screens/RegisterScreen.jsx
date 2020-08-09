@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import RegistrationControl from '../constants/RegistrationFormControlOptions';
 import Spinner from 'react-bootstrap/Spinner';
+import Footer from "../junk/Footer";
 export default function RegisterScreen()
 {
   const [credentials,setcredentials] = useState({
@@ -34,19 +35,22 @@ export default function RegisterScreen()
   </Form.Group>;
   }
 
-  return(
+  return(<div>
     <Form className="FormAligner">
     {RegistrationControl.map(MapFields)}
-    {loading?<Button variant="primary" disabled>
-    <Spinner
-      as="span"
-      animation="border"
-      size="sm"
-      role="status"
-      aria-hidden="true"
-    />
-    <span className="sr-only">Loading...</span>
-    </Button>:<Button onClick={async(e)=>{
+    {loading?<div className="UI-Aligner">
+
+    <Button className="UI-Button-Click" variant="primary" disabled>
+  <Spinner
+    as="span"
+    animation="border"
+    size="sm"
+    role="status"
+    aria-hidden="true"
+  />
+  <span className="sr-only">Loading...</span>
+  </Button> 
+    </div>:<div className="UI-Aligner"><Button className="UI-Button-Click" onClick={async(e)=>{
       e.preventDefault();
       setloading(true);
       const JSONString = credentials;
@@ -60,7 +64,9 @@ export default function RegisterScreen()
         setloading(false);
         alert(jsonData["Error_Message"]);
       });
-    }}>Submit</Button>}
+    }}>Submit</Button></div>}
+    <Footer />
     </Form>
+    </div>
   );
 }

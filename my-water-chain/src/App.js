@@ -4,6 +4,7 @@ import LoginScreen from './components/screens/LoginScreen.jsx';
 import RegisterScreen from './components/screens/RegisterScreen.jsx';
 import DisplayScreen from './components/screens/DisplayScreen.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import Footer from './components/junk/Footer';
 //import LineChart from './components/coreComponents/LineChart.js';
 import ProtectedRoute from './components/security/PrivateRoute.jsx';
 import './App.css';
