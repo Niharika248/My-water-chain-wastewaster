@@ -65,8 +65,8 @@ export default function RegisterScreen()
         alert(jsonData["Error_Message"]);
       });
     }}>Submit</Button></div>}
-    <Footer />
     </Form>
+    <Footer />
     </div>
   );
 }

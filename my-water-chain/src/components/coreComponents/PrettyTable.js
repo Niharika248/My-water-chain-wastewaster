@@ -50,10 +50,12 @@ function PrettyTable(props)
         <table className="Pretty-Table">
         {
             MyTableHeaders.map(header=>{
-                return(<th className="My-Pretty-Table-Header">{header}</th>);
+                return<th className="My-Pretty-Table-Header">
+                {header}
+                </th>;
             })
         }
-        (<tr className="Pretty-Table-Row">
+        <tr className="Pretty-Table-Row">
         {
             SelfData.map(detail=>{
                 return(<td className="Pretty-Table-Body">

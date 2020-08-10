@@ -64,15 +64,6 @@
   text-align:right;
 
 }
-.FormAligner
-{
-  height: 5rem;
-  width: 15rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5rem;
-  
-}
 .ErrorPage-Header
 {
   background-color: #cf1b1b;
@@ -81,6 +72,15 @@
   width: 25rem;
   font-family: monospace;
 
+}
+.FormAligner
+{
+  height: 5rem;
+  width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+  
 }
 .ErrorPage-Body
 {
@@ -93,7 +93,7 @@
 {
   display: flex;
   justify-content: space-between;
-  margin-top: 2%;
+  margin-top: 2rem;
   bottom: 2%;
   position: absolute;
   width: 100%;

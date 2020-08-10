@@ -3,10 +3,10 @@ import { Line } from 'react-chartjs-2';
 import HeadersConstant from '../constants/ResponseConstants.js';
 function LineChaart(props)
 {
-    const color_01 = ['rgba(164, 227, 94, 0.5)'];
-    const color_02 = ['rgba(194, 137, 236, 0.5)'];
-    const color_03 = ['rgba(103, 184, 112, 0.8)'];
-    const color_04 = ['rgba(177, 219, 231, 0.8)'];
+    const color_01 = ['rgba(0, 182, 255, 0.8)'];
+    const color_02 = ['rgba(1, 255, 255, 0.8)'];
+    const color_03 = ['rgba(0, 206, 255, 0.8)'];
+    const color_04 = ['rgba(200, 227, 248, 0.8)'];
     const data ={
         labels: HeadersConstant.Time_Labels,
         datasets:[
@@ -17,6 +17,7 @@ function LineChaart(props)
                 backgroundColor: color_01,
                 pointBackgroundColor:color_01,
                 pointBorderColor:color_01,
+
             },
             {
                 label: HeadersConstant.Chart_02_Heading_02,
