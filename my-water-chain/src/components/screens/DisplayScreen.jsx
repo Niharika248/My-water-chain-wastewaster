@@ -20,46 +20,36 @@ export default function DisplayScreen(props)
     }
     return(LowedDown);
     }
-
-    function CreateDataSetArray(numberOfElements,plotlabel,plotdata,color)
-    {
-        let DataSetArray = [];
-        let temp = {};
-        for(let i = 0;i<numberOfElements;i++)
-        {
-            temp = {
-                label: plotlabel[i],
-                data: plotdata[i],
-                borderColor: [color[i]],
-                backgroundColor: [color[i]],
-                pointBackgroundColor:[color[i]],
-                pointBorderColor:[color[i]],
-            };
-            DataSetArray.push(temp);
-        }
-        return(DataSetArray);
-
-    }
-
     const jsonData = props.Block_Chain[props.Block_Chain.length-1].water_data;
     let LowedDown = reduce_to_index(jsonData.FlowRate,1000);
     let QuantityIndexed = reduce_to_index(jsonData.Water_Quantity_Index_Day,1500000);
-    console.log(props.industry_response);
     const [ChartState,changeChartState] = useState(false);
     const [ButtonText,changeButtonText] = useState("Switch to Purchase Screen");
+    const streamSession = "Generate Stream Session";
     function switchPurchase()
     {
-        changeChartState(prev=>!prev);
-        changeButtonText(prev=>{
-            if(prev==="Switch to Purchase Screen")
-            return("Switch to Chart Screen");
-            else if(prev==="Switch to Chart Screen")
-            return("Switch to Purchase Screen");
-        });
+        
+    }
+    const generatePurchase = async()=>
+    {
+        const res = await fetch('http://localhost:5000/livepeer-streaming',{
+            method: 'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({"email":props.email})
+          }).then(response=>response.json()).then(
+              finalbody=>{alert(`Your stream generated url is ${finalbody.url}. Note that the url will automatically expire after 30 mins. You may renew it here. You can stream your session @ https://videojs.github.io/videojs-contrib-hls/`);}
+          );
+
+
+
     }
     return(<div className="Display-Screen-Global-Div">
         <Header />
         <div className="UI-Aligner"><Button className="Switch-Button-In-Display UI-Button-Click"
+        onClick = {generatePurchase}>{streamSession}</Button>
+        <Button className="Switch-Button-In-Display UI-Button-Click"
         onClick = {switchPurchase}>{ButtonText}</Button>
         </div>
         {ChartState?<div>

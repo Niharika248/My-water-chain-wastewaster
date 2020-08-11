@@ -10,6 +10,7 @@ from modules.databases.gSheet_MongoDB import AdminDataBase
 from modules.databases.form_validator import Validator
 from modules.encoding.password_encoder import EnforceSecurity
 from modules.blockchain.serverchain import Blockchain
+from modules.livepeer.LivePeer import LivePeer
 from modules.blockchain.blockchain import Blockchain as Bcs
 from bson.objectid import ObjectId
 app = Flask(__name__)
@@ -23,6 +24,9 @@ MongoDB_CredentialsName = 'logincredentials'
 GSheetStorageType = 'AdminPasswordChange'
 globalSheetName = 'client_details'
 mainCollection = "userdetails"
+jsonBodypath = r'modules/livepeer/LivePeerAssets/credentials/test.json'
+apiKeypath = r'modules/livepeer/LivePeerAssets/credentials/API_Key.json'
+
 def configureKeys(path):
     with open(path) as f:
         data = json.load(f)
@@ -47,13 +51,16 @@ client = pymongo.MongoClient(mongoURI)
 db = client[MongoDB_DatabaseName]
 #collection = db[MongoDB_CollectionName]
 
-#BlockChainConnection
-
+#LivePeer
+LivePeerjsonBody = configureKeys(jsonBodypath)
+apiKey = configureKeys(apiKeypath)
 
 #Giving Admin Access [to manipulate data]
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
-print("Successfully configured all the admin Databases and GSheets.")
+livepeer = LivePeer(apiKey,LivePeerjsonBody)
+
+print("Successfully configured all the admin Databases, LivePeer Streaming & GSheets.")
 
 @app.route('/register', methods=['POST'])
 def postRegistrationData():
@@ -234,7 +241,19 @@ def xnodscdshfewhfewdshef():
     else:
         print("Invalid-operation")
     return(res)
-#Update Admin Sheet from Database
+
+@app.route('/livepeer-streaming', methods=['POST'])
+def livepeer_streaming():
+    datapacket = request.get_json()
+    try:
+        print(f"Reading Sign in from {datapacket['email']}")
+        streamUrl = livepeer.ReturnFetchUserUrl()
+        return(jsonify(streamUrl))
+    except Exception as e:
+        print(e)
+        print("Invalid Request detected!")
+        return("Invalid Request! Try again.")
+
 
 if __name__=="__main__":
     app.run(debug=True)

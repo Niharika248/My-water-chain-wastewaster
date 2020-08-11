@@ -1,0 +1,237 @@
+[{
+  "name": "test_stream",
+  "profiles": [{
+    "name": "720p",
+    "bitrate": 2000000,
+    "fps": 30,
+    "width": 1280,
+    "height": 720
+  }, {
+    "name": "480p",
+    "bitrate": 1000000,
+    "fps": 30,
+    "width": 854,
+    "height": 480
+  }, {
+    "name": "360p",
+    "bitrate": 500000,
+    "fps": 30,
+    "width": 640,
+    "height": 360
+  }],
+  "kind": "stream",
+  "userId": "f549b245-ac52-4cbc-98e3-14f8334a8834",
+  "renditions": {},
+  "id": "052f65d6-0d61-4a35-90c6-758dcaed5eca",
+  "createdAt": 1597117924523,
+  "streamKey": "3kyv-2e2q-di74-i5k6",
+  "playbackId ":"rrnmehffzxq219fb ",
+  "createdByTokenName ":"my - water - chain "
+  },
+  {"name ":"test_stream ",
+  "profiles ":[{"
+  name ":"
+  720 p ","
+  bitrate ":2000000,"
+  fps ":30,"
+  width ":1280,"
+  height ":720},{"
+  name ":"
+  480 p ","
+  bitrate ":1000000,
+  "fps": 30,
+  "width": 854,
+  "height": 480
+}, {
+  "name": "360p",
+  "bitrate": 500000,
+  "fps": 30,
+  "width": 640,
+  "height": 360
+}], "kind": "stream", "userId": "f549b245-ac52-4cbc-98e3-14f8334a8834", "renditions": {}, "id": "25cd3acc-9630-4d3c-8
+257 - 4e3 ebdcbbf1a ","
+createdAt ":1597117744828,"
+streamKey ":"
+bm06 - wig8 - w8wf - fj7m ","
+playbackId ":"
+6 dtho861tt16sz0y ","
+createdByTokenName ":"
+my - water - chain "},{"
+name ":"
+wastewater ","
+profiles ":[{"
+name ":"
+240 p0 ","
+fps ":0,"
+bit
+rate ":250000,"
+width ":426,"
+height ":240},{"
+name ":"
+360 p0 ","
+fps ":0,"
+bitrate ":800000,"
+width ":640,"
+height ":360},{"
+name ":"
+480 p0 ","
+fps ":0,"
+bitrate ":1600000,"
+width ":854,"
+height ":480},{"
+name ":"
+720 p0 ","
+fps ":0,"
+bitrate ":30
+00000, "width": 1280, "height": 720
+}], "kind": "stream", "userId": "f549b245-ac52-4cbc-98e3-14f8334a8834", "renditions": {}, "id": "438a8b99-3d2c-4ce2-84bb-3a88d0048270", "createdAt": 1596869934788, "streamKey": "33dh-rn0y-qt7
+y - vare ","
+playbackId ":"
+yobwy9484f0qb3mf "},{"
+name ":"
+test_stream ","
+profiles ":[{"
+name ":"
+720 p ","
+bitrate ":2000000,"
+fps ":30,"
+width ":1280,"
+height ":720},{"
+name ":"
+480 p ","
+bitrate ":1000000,"
+fps ":30,"
+width ":854,"
+height ":480
+}, {
+  "name": "360p",
+  "bitrate": 500000,
+  "fps": 30,
+  "width": 640,
+  "height": 360
+}], "kind": "stream", "userId": "f549b245-ac52-4cbc-98e3-14f8334a8834", "renditions": {}, "id": "5e2746a5-c092-48c2-b291-3a9d8a8be5e8", "createdAt": 1597
+117966589, "streamKey": "9mjt-bh0w-n8qg-vcrj", "playbackId": "grwn3hhxacxqyqh9", "createdByTokenName": "my-water-chain", "isActive": false, "lastSeen": 1597121713479, "sourceSegments": 324, "transcodedSegments": 990
+}, {
+  "name": "Mist Transcode",
+  "profiles": [{
+        "bitrate": 2000000,
+        "fps": 0,
+        "height": 720,
+        "name": "720p",
+        "width": 1280,
+        "gop": "2.0"
+      }, {
+        "bitrate": 1000000,
+        "fps": 0,
+        "height": 480,
+        "name": "480p",
+        "width": 854,
+        "gop": "2.0"
+      }, {
+        "bitrate": 500000,
+        "fp
+        s ":0,"
+        height ":360,"
+        name ":"
+        360 p ","
+        width ":640,"
+        gop ":"
+        2.0 "}],"
+        kind ":"
+        stream ","
+        userId ":"
+        f549b245 - ac52 - 4 cbc - 98e3 - 14 f8334a8834 ","
+        renditions ":{},"
+        id ":"
+        6 efa1442 - f698 - 4 cbc - b2fe - 582 bf5d13f79 ","
+        createdAt ":1597118350188,"
+        p
+        arentId ":"
+        5e2746 a5 - c092 - 48 c2 - b291 - 3 a9d8a8be5e8 ","
+        lastSeen ":1597118421486,"
+        sourceSegments ":8,"
+        transcodedSegments ":30},{"
+        name ":"
+        Mist Transcode ","
+        profiles ":[{"
+        bitrate ":2000000,"
+        fps ":0,"
+        height ":720,"
+        name ":"
+        720 p ","
+        w
+        idth ":1280,"
+        gop ":"
+        2.0 "},{"
+        bitrate ":1000000,"
+        fps ":0,"
+        height ":480,"
+        name ":"
+        480 p ","
+        width ":854,"
+        gop ":"
+        2.0 "},{"
+        bitrate ":500000,"
+        fps ":0,"
+        height ":360,"
+        name ":"
+        360 p ","
+        width ":640,"
+        gop ":"
+        2.0 "}],"
+        kind ":"
+        stream ","
+        userId ":"
+        f5
+        49 b245 - ac52 - 4 cbc - 98e3 - 14 f8334a8834 ","
+        renditions ":{},"
+        id ":"
+        b132c570 - 6729 - 466 a - a3c1 - e54f32a0fd82 ","
+        createdAt ":1597120864267,"
+        parentId ":"
+        5e2746 a5 - c092 - 48 c2 - b291 - 3 a9d8a8be5e8 ","
+        lastSeen ":1597121713479,"
+        sourceSegmen
+        ts ":264,"
+        transcodedSegments ":798},{"
+        name ":"
+        Mist Transcode ","
+        profiles ":[{"
+        bitrate ":2000000,"
+        fps ":0,"
+        height ":720,"
+        name ":"
+        720 p ","
+        width ":1280,"
+        gop ":"
+        2.0 "},{"
+        bitrate ":1000000,"
+        fps ":0,"
+        height ":480,"
+        name ":"
+        480 p ","
+        widt
+        h ":854,"
+        gop ":"
+        2.0 "},{"
+        bitrate ":500000,"
+        fps ":0,"
+        height ":360,"
+        name ":"
+        360 p ","
+        width ":640,"
+        gop ":"
+        2.0 "}],"
+        kind ":"
+        stream ","
+        userId ":"
+        f549b245 - ac52 - 4 cbc - 98e3 - 14 f8334a8834 ","
+        renditions ":{},"
+        id ":"
+        c4f53ac0 - 52 f8 - 4836 - abfd - 8
+        7 daf14f3aca ","
+        createdAt ":1597120678626,"
+        parentId ":"5e2746 a5 - c092 - 48 c2 - b291 - 3 a9d8a8be5e8 ","
+        lastSeen ":1597120878781,"
+        sourceSegments ":52,"
+        transcodedSegments ":162}]

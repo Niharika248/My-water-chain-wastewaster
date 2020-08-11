@@ -11,6 +11,7 @@ from flask_cors import CORS
 from modules.databases.gSheet_MongoDB import AdminDataBase
 from modules.databases.form_validator import Validator
 from modules.encoding.password_encoder import EnforceSecurity
+from modules.livepeer.LivePeer import LivePeer
 from modules.blockchain.serverchain import Blockchain
 from bson.objectid import ObjectId
 
@@ -22,6 +23,8 @@ service_account_json_path = r'modules/credentials/google_credentials.json'
 default_data_json_path = r'modules/client/client_secrets/dummyJson.json'
 MongoDB_CredentialsName = 'logincredentials'
 GSheetStorageType = 'AdminPasswordChange'
+jsonBodypath = r'modules/livepeer/LivePeerAssets/credentials/test.json'
+apiKeypath = r'modules/livepeer/LivePeerAssets/credentials/API_Key.json'
 
 def configureKeys(path):
     with open(path) as f:
@@ -36,7 +39,6 @@ gSheetKey = keyIDs["gSheetKey"]
 mongoURI = keyIDs["mongoClientURI"]
 mainCollection = "userdetails"
 
-
 #gSheets
 gc = gspread.service_account(filename = service_account_json_path)
 sh = gc.open_by_key(gSheetKey)
@@ -46,6 +48,10 @@ client = pymongo.MongoClient(mongoURI)
 db = client[MongoDB_DatabaseName]
 #collection = db[MongoDB_CollectionName]
 
+#LivePeer
+LivePeerjsonBody = configureKeys(jsonBodypath)
+apiKey = configureKeys(apiKeypath)
+
 #Random Variables
 
 sheet1 = 'client_details'
@@ -53,6 +59,7 @@ sheet3 = 'AdminPasswordChange'
 #Giving Admin Access [to manipulate data]
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
+livepeer = LivePeer(apiKey,LivePeerjsonBody)
 #adminDataBase.createDevices()
 #print(adminDataBase.MongoDBPrettyTableFetch("sahil@gmail.com"))
 #results = adminDataBase.FindDuplicates()
@@ -60,13 +67,13 @@ validator = Validator(sh,db)
 # print("Running")
 # senderID = "5f298fd85d4eb1df1045fe60"
 # mydata = adminDataBase.experimentationFunction(senderID)
-senderID = "5f298f7c56b378e6ff3c7fe4"
-recieverID = "5f298f7d56b378e6ff3c7fe5"
-blockchain = Blockchain("_id",ObjectId(senderID),db,MongoDB_DatabaseName)
-recieveObject = Blockchain("_id",ObjectId(recieverID),db,MongoDB_DatabaseName)
-res = adminDataBase.Transaction_Chain(senderID,recieverID,3)
-success_flag = res["Status"]
-waterdetails = res["Transaction_chain"]
+# senderID = "5f298f7c56b378e6ff3c7fe4"
+# recieverID = "5f298f7d56b378e6ff3c7fe5"
+# blockchain = Blockchain("_id",ObjectId(senderID),db,MongoDB_DatabaseName)
+# recieveObject = Blockchain("_id",ObjectId(recieverID),db,MongoDB_DatabaseName)
+# res = adminDataBase.Transaction_Chain(senderID,recieverID,3)
+# success_flag = res["Status"]
+# waterdetails = res["Transaction_chain"]
 
 # success_flag = res["Status"]
 # if success_flag:
@@ -133,3 +140,15 @@ waterdetails = res["Transaction_chain"]
 
 ##emailcheck = validator.DuplicateEmailCheck('shifvam@gmail.com','logincredentials')
 ##print(emailcheck)
+
+
+
+# Live Peer Testing
+currentPlaybackurl = 'https://livepeer.com/api/ingest'
+#res = livepeer.DisplayStreamingDetails()
+#livepeer.DisplayStreamingDetails()
+#livepeer.FetchUserUrl('fb7aclz5no2kp2wg','4c8581f7-7714-4454-9ce9-d626f56db124')
+#streamIds = livepeer.FetchAllStreamIds()
+#livepeer.DisplayStreamingDetails()
+#print(streamIds)
+#print(f"response = {res}")
