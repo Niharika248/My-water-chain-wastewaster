@@ -1,3 +1,5 @@
+#!/usr/bin/python3.6
+
 #Main Program
 from flask import Flask,jsonify,request
 import datetime
@@ -242,6 +244,10 @@ def xnodscdshfewhfewdshef():
         print("Invalid-operation")
     return(res)
 
+@app.route('/test', methods=['GET'])
+def testfunction():
+    return("Hello world")
+
 @app.route('/livepeer-streaming', methods=['POST'])
 def livepeer_streaming():
     datapacket = request.get_json()
@@ -255,5 +261,5 @@ def livepeer_streaming():
         return("Invalid Request! Try again.")
 
 
-if __name__=="__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0',port=5000)

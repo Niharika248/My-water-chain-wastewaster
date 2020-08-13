@@ -7,7 +7,7 @@ import BarChart from '../coreComponents/BarCharts.js';
 import DonutChart from '../coreComponents/DonutChart.js';
 import PrettyTable from '../coreComponents/PrettyTable.js';
 import HeadersConstant from '../constants/ResponseConstants.js';
-
+import {ipaddress} from '../constants/dummyconstantfiles.js';
 
 export default function DisplayScreen(props)
 {
@@ -42,7 +42,7 @@ export default function DisplayScreen(props)
     }
     const generatePurchase = async()=>
     {
-        const res = await fetch('http://localhost:5000/livepeer-streaming',{
+        const res = await fetch(`${ipaddress}livepeer-streaming`,{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'

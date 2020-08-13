@@ -15,11 +15,11 @@ def jsonReader(path):
     return data
 
 jsonData = jsonReader(client_secrets_path)
-
-verifyUrl = 'http://localhost:5000/client-fetch-chain'
-previous_chain = 'http://localhost:5000/xnodscdshfewhfewdshef'
-mine_block_URL = 'http://localhost:5000/mine-block'
-validate_chain_and_upload_url = 'http://localhost:5000/validate-chain-and-upload'
+ipaddress = 'http://192.168.56.1:5000/'
+verifyUrl = f'{ipaddress}client-fetch-chain'
+previous_chain = f'{ipaddress}xnodscdshfewhfewdshef'
+mine_block_URL = f'{ipaddress}mine-block'
+validate_chain_and_upload_url = f'{ipaddress}validate-chain-and-upload'
 
 ###########################################################################IoT Constants######################################################################
 dataPacket = 30000

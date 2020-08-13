@@ -35,6 +35,7 @@ const DummyDetails = [
 const TableHeaders = ["Industry Name","Industry-ID","Allowance","Credits"];
 const MyTableHeaders = ["Water Drops","Current Allowance","Expiry Date"];
 const MyTableDetails = [3,"250 Liters/day",0,"1-August-2022"];
+const ipaddress = 'http://192.168.56.1:5000/';
 export default DummyDetails;
-export {TableHeaders,MyTableHeaders,MyTableDetails};
+export {TableHeaders,MyTableHeaders,MyTableDetails,ipaddress};
 

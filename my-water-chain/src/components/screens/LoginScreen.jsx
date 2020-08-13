@@ -6,6 +6,7 @@ import LoginDetails from '../constants/LoginDetails.jsx';
 import Spinner from 'react-bootstrap/Spinner';
 import Auth from '../security/Auth.jsx';
 import Footer from '../junk/Footer';
+import {ipaddress} from "../constants/dummyconstantfiles";
 
 export default function LoginScreen(props)
 {
@@ -63,7 +64,7 @@ export default function LoginScreen(props)
       e.preventDefault();
       setloading(true);
       const JSONString = credentials;
-      const response = await fetch('http://localhost:5000/login',{
+      const response = await fetch(`${ipaddress}login`,{
         method: 'POST',
         headers:{
           'Content-Type':'application/json'
@@ -72,7 +73,7 @@ export default function LoginScreen(props)
       }).then(response=>response.json()).then(async(jsonData)=>{
         if(jsonData["Is_Valid"])
         {
-          const BackendData = await fetch('http://localhost:5000/fetching',{
+          const BackendData = await fetch(`${ipaddress}fetching`,{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'

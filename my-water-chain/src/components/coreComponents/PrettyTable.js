@@ -5,6 +5,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Auth from '../security/Auth.jsx';
+import {ipaddress} from '../constants/dummyconstantfiles.js';
 
 function PrettyTable(props)
 {
@@ -104,7 +105,7 @@ function PrettyTable(props)
             Credits:details.Credits,
             password:details.Password
         }
-        const response = await fetch('http://localhost:5000/make-a-transaction',{
+        const response = await fetch(`${ipaddress}make-a-transaction`,{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'

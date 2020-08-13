@@ -1,2 +1,2 @@
-FLASK_APP=my-water-tech.py
-FLASK_ENV=development
+FLASK_APP=waterchain.py
+FLASK_ENV=production

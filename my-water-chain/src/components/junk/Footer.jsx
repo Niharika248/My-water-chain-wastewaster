@@ -6,7 +6,6 @@ export default function Footer()
     const today = new Date();
     const DayFormat = today.toString().split(" ").slice(0,4);
     const Element3 = DayFormat.filter(Boolean).join(" ");
-    console.log(Element3);
     const Element2 = "Copyright © "+today.getFullYear().toString()+". All rights reserved.";
     return(
         <div className="FooterAligner">

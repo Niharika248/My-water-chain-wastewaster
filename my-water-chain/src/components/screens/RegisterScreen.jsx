@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import RegistrationControl from '../constants/RegistrationFormControlOptions';
 import Spinner from 'react-bootstrap/Spinner';
 import Footer from "../junk/Footer";
+import {ipaddress} from "../constants/dummyconstantfiles";
 export default function RegisterScreen()
 {
   const [credentials,setcredentials] = useState({
@@ -54,7 +55,7 @@ export default function RegisterScreen()
       e.preventDefault();
       setloading(true);
       const JSONString = credentials;
-      const response = await fetch('http://localhost:5000/register',{
+      const response = await fetch(`${ipaddress}register`,{
         method: 'POST',
         headers:{
           'Content-Type':'application/json'
