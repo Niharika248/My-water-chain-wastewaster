@@ -1,0 +1,9 @@
+body
+{
+    /*background-color: greenyellow;*/
+    /*background-image:url('https://raw.githubusercontent.com/sedhha/gitpractice/master/background.jpg');*/
+    background-image:url("background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
