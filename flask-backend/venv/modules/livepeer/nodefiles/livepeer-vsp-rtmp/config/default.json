@@ -1,0 +1,7 @@
+{
+  "livepeerAPIKey" : "33dh-rn0y-qt7y-vare",
+  "livepeerUsername" : "wastewater",
+  "livepeerIngestBaseURL" : "rtmp://fra-rtmp.livepeer.com/live/33dh-rn0y-qt7y-vare",
+  "livepeerPlaybackBaseURL" : "https://fra-cdn.livepeer.com/hls/yobwy9484f0qb3mf/index.m3u8",
+  "platformIngestBaseURL" : ""
+}

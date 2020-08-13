@@ -44,3 +44,4 @@ flask-backend/venv/Lib/*
 /flask-backend/venv/modules/livepeer/streams.json
 /flask-backend/venv/modules/livepeer/nodefiles/livepeer-vsp-rtmp/node_modules
 /flask-backend/venv/modules/livepeer/livepeerTest/videos/*
+/flask-backend/venv/modules/livepeer/livepeerTest/streaming_assets/*

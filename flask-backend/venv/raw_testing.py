@@ -129,7 +129,8 @@ livepeer = LivePeer(apiKey,LivePeerjsonBody)
 
 
 
-#adminDataBase.createDevices()
+adminDataBase.createDevices()
+
 #response = Blockchain("_id",ObjectId("5f27d280b700d27fd530a1f3"),db,mainCollection)
 
 
@@ -142,10 +143,11 @@ livepeer = LivePeer(apiKey,LivePeerjsonBody)
 ##print(emailcheck)
 
 
-
+id = 'a9eb3a5a-0e83-491b-bd59-8a0755018506'
 # Live Peer Testing
 currentPlaybackurl = 'https://livepeer.com/api/ingest'
-#res = livepeer.DisplayStreamingDetails()
+#res = livepeer.ReturnFetchUserUrl()
+#print(res)
 #livepeer.DisplayStreamingDetails()
 #livepeer.FetchUserUrl('fb7aclz5no2kp2wg','4c8581f7-7714-4454-9ce9-d626f56db124')
 #streamIds = livepeer.FetchAllStreamIds()

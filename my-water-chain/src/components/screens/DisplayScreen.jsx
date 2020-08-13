@@ -28,6 +28,16 @@ export default function DisplayScreen(props)
     const streamSession = "Generate Stream Session";
     function switchPurchase()
     {
+        changeChartState(prev=>{
+            return(!prev);
+        });
+        changeButtonText(prev=>{
+            if(prev==="Switch to Purchase Screen")
+            return("Switch to Dashboard Screen");
+            else
+            return("Switch to Purchase Screen");
+
+        });
         
     }
     const generatePurchase = async()=>

@@ -22,6 +22,7 @@ The three major project components are as follows:
 - BlockChain
 - IoT
 - Computer Vision
+- LivePeer Online Streaming
 - WebDev
 
 ### BlockChain
