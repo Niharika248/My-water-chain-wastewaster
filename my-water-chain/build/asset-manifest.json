@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.16cfd446.chunk.css",
-    "main.js": "/static/js/main.ba4bcba0.chunk.js",
-    "main.js.map": "/static/js/main.ba4bcba0.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.4afcf1b2.js",
-    "runtime-main.js.map": "/static/js/runtime-main.4afcf1b2.js.map",
-    "static/css/2.af3c1da9.chunk.css": "/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.0fcc0719.chunk.js": "/static/js/2.0fcc0719.chunk.js",
-    "static/js/2.0fcc0719.chunk.js.map": "/static/js/2.0fcc0719.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.8f153e8963878cd7d3bc1b5ab490cabd.js": "/precache-manifest.8f153e8963878cd7d3bc1b5ab490cabd.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.af3c1da9.chunk.css.map": "/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.16cfd446.chunk.css.map": "/static/css/main.16cfd446.chunk.css.map",
-    "static/js/2.0fcc0719.chunk.js.LICENSE.txt": "/static/js/2.0fcc0719.chunk.js.LICENSE.txt"
+    "main.css": "/sedhha/my-water-chain/static/css/main.16cfd446.chunk.css",
+    "main.js": "/sedhha/my-water-chain/static/js/main.8df46c20.chunk.js",
+    "main.js.map": "/sedhha/my-water-chain/static/js/main.8df46c20.chunk.js.map",
+    "runtime-main.js": "/sedhha/my-water-chain/static/js/runtime-main.c19f2713.js",
+    "runtime-main.js.map": "/sedhha/my-water-chain/static/js/runtime-main.c19f2713.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/sedhha/my-water-chain/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.82e0df5c.chunk.js": "/sedhha/my-water-chain/static/js/2.82e0df5c.chunk.js",
+    "static/js/2.82e0df5c.chunk.js.map": "/sedhha/my-water-chain/static/js/2.82e0df5c.chunk.js.map",
+    "index.html": "/sedhha/my-water-chain/index.html",
+    "precache-manifest.ec3d21daf2f2302907d5ba31f7c9cde7.js": "/sedhha/my-water-chain/precache-manifest.ec3d21daf2f2302907d5ba31f7c9cde7.js",
+    "service-worker.js": "/sedhha/my-water-chain/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/sedhha/my-water-chain/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.16cfd446.chunk.css.map": "/sedhha/my-water-chain/static/css/main.16cfd446.chunk.css.map",
+    "static/js/2.82e0df5c.chunk.js.LICENSE.txt": "/sedhha/my-water-chain/static/js/2.82e0df5c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4afcf1b2.js",
+    "static/js/runtime-main.c19f2713.js",
     "static/css/2.af3c1da9.chunk.css",
-    "static/js/2.0fcc0719.chunk.js",
+    "static/js/2.82e0df5c.chunk.js",
     "static/css/main.16cfd446.chunk.css",
-    "static/js/main.ba4bcba0.chunk.js"
+    "static/js/main.8df46c20.chunk.js"
   ]
 }
