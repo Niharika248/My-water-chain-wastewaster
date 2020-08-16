@@ -9,12 +9,24 @@ The providers can understand the resource utility better with reliable and accur
 The project is an attempt to come up with an innovative application rather than the conventional use of BlockChain and follow the Hardware-Software approach and provide the most accurate data that will help in getting the best possible insights. These insights will be focusing on the prevention of water resource exploitation and take a step towards its effective utilization.
 
 ### Table of Contents
-- Project Components
-- Tools and Frameworks
-- Installation
-- How it Works?
-- What's Next?
-- References
+- [My Water Chain Project](#my-water-chain-project)
+  - [About The Project](#about-the-project)
+    - [Table of Contents](#table-of-contents)
+  - [Project Components](#project-components)
+    - [BlockChain](#blockchain)
+    - [IoT](#iot)
+    - [Computer Vision](#computer-vision)
+    - [LivePeer Real Time Streaming](#livepeer-real-time-streaming)
+    - [Web Dev](#web-dev)
+  - [Tools and Frameworks](#tools-and-frameworks)
+  - [Installation](#installation)
+    - [**Frontend**](#frontend)
+    - [**Backend**](#backend)
+      - [Setting Up GSheets](#setting-up-gsheets)
+    - [**Front-End**](#front-end)
+  - [How it Works?](#how-it-works)
+  - [What's Next?](#whats-next)
+  - [References](#references)
 
 ## Project Components
 
