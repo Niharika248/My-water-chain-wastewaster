@@ -83,8 +83,10 @@ class AdminDataBase:
         cellEntry = 0
         for entry in newEntries:
             if entry["Status"]==createDevice_MessageCode:
+                #print("Passing")
                 pass
             else:
+                #print("Gone in else")
                 if self.isDuplicate(entry["Registerar_Email"]):
                     print(f"Process Aborted for Email-ID: {entry['Registerar_Email']} Duplicate email associate attempt!")
                     self.bulksheet.update_cell(cellEntry+2,StatusIndex+1,"Process Failed Due to Duplicacy")
