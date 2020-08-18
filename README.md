@@ -112,6 +112,8 @@ With the help of [LivePeer API Documentation](https://www.notion.so/livepeer/Liv
 
 Once you type out `API Key` in the `API_Key.json` file nothing else needs to be done. `LivePeer.py` will automatically set up rest of the things for you! 😃😃😃
 
+Location to credential file is [here](https://github.com/sedhha/my-water-chain/blob/master/flask-backend/venv/modules/livepeer/LivePeerAssets/credentials/API_Key.json)
+
 ~~You may keep the other fields empty initially. Once you have entered the json fields, then you can run the following function to obtain Server, StreamKey, id, playbackID:~~
 
 ```
