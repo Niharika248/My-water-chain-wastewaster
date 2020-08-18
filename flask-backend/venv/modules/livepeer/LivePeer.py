@@ -5,9 +5,9 @@ currentPlaybackurl = 'https://livepeer.com/api/ingest'
 objPlayerLink = 'https://obsproject.com/download'
 streamUrl = 'https://livepeer.com/api/stream/'
 apitokenUrl = 'https://livepeer.com/api/api-token/'
-
+cpath = r"LivePeerAssets/credentials/API_Key.json"
 class LivePeer:
-    def __init__(self,apiKey,jsonbody):
+    def __init__(self,apiKey,jsonbody,credentialspath = cpath):
         self.key = apiKey["key"]
         self.jsonBody = jsonbody
         self.url = 'https://livepeer.com/api/stream'
@@ -17,13 +17,33 @@ class LivePeer:
         }
         self.ingest = ''
         self.playback = ''
-        self.streamkey = apiKey["StreamKey"]
-        self.playbackId = apiKey["playbackID"]
-        self.id = apiKey["id"] #Also known as streamid [For deleting streams]
+        if apiKey["Server"]=='':
+            res = self.GetIngestAndPlayBackUrl()
+            res = self.CreateStreamObject()
+            jsonPack = {
+              "key":self.key,
+              "Server":self.ingest,
+              "StreamKey":self.streamkey,
+              "id":self.id,
+              "playbackID":self.playbackId
+            }
+            self.UpdateKeyCredentials(jsonPack,credentialspath)
+        else:
+            self.streamkey = apiKey["StreamKey"]
+            self.playbackId = apiKey["playbackID"]
+            self.id = apiKey["id"] #Also known as streamid [For deleting streams]
         self.isStreamingTrue = False
         self.publicUrl = ''
         self.StreamIds = []
         self.AudienceUrl = ''
+
+    def UpdateKeyCredentials(self,jsonpack,path):
+        with open(path, 'r+') as f:
+            data = json.load(f)
+            #print(data)
+            f.seek(0)        # <--- should reset file position to the beginning.
+            json.dump(jsonpack, f, indent=4)
+            f.truncate()     # remove remaining part
 
     def Authorize(self):
         return({'Authorization': f'Bearer {self.key}'})
@@ -59,9 +79,7 @@ class LivePeer:
         else:
             return(self.AudienceUrl)
 
-    def CreateStreamObject(self,url=None):
-        if url is None:
-            url = streamUrl
+    def CreateStreamObject(self,url=streamUrl):
         if self.ingest=='' or self.playback=='':
             print("Error creating Stream Object... Running GetIngestAnfPlayBackUrl to fetch ingest and playback.")
             res = self.GetIngestAndPlayBackUrl(currentPlaybackurl)
@@ -170,3 +188,14 @@ class LivePeer:
             headers = self.headers
             del(headers['Content-type'])
             DeleteRequest(url,headers)
+
+
+#testing
+# def configureKeys(path):
+#     with open(path) as f:
+#         data = json.load(f)
+#     return data
+# apiKey = configureKeys(r"LivePeerAssets/credentials/API_Key.json")
+# LivePeerjsonBody = configureKeys(r"LivePeerAssets/credentials/test.json")
+#
+# livePeer = LivePeer(apiKey,LivePeerjsonBody)

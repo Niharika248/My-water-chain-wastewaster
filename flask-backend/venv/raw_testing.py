@@ -59,7 +59,7 @@ sheet3 = 'AdminPasswordChange'
 #Giving Admin Access [to manipulate data]
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
-livepeer = LivePeer(apiKey,LivePeerjsonBody)
+livepeer = LivePeer(apiKey,LivePeerjsonBody,apiKeypath)
 #adminDataBase.createDevices()
 #print(adminDataBase.MongoDBPrettyTableFetch("sahil@gmail.com"))
 #results = adminDataBase.FindDuplicates()
@@ -129,7 +129,7 @@ livepeer = LivePeer(apiKey,LivePeerjsonBody)
 
 
 
-adminDataBase.createDevices()
+#adminDataBase.createDevices()
 
 #response = Blockchain("_id",ObjectId("5f27d280b700d27fd530a1f3"),db,mainCollection)
 
@@ -143,9 +143,9 @@ adminDataBase.createDevices()
 ##print(emailcheck)
 
 
-id = 'a9eb3a5a-0e83-491b-bd59-8a0755018506'
+#id = 'a9eb3a5a-0e83-491b-bd59-8a0755018506'
 # Live Peer Testing
-currentPlaybackurl = 'https://livepeer.com/api/ingest'
+#currentPlaybackurl = 'https://livepeer.com/api/ingest'
 #res = livepeer.ReturnFetchUserUrl()
 #print(res)
 #livepeer.DisplayStreamingDetails()

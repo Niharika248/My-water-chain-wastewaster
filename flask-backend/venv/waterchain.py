@@ -60,7 +60,7 @@ apiKey = configureKeys(apiKeypath)
 #Giving Admin Access [to manipulate data]
 adminDataBase = AdminDataBase(sh,db)
 validator = Validator(sh,db)
-livepeer = LivePeer(apiKey,LivePeerjsonBody)
+livepeer = LivePeer(apiKey,LivePeerjsonBody,apiKeypath)
 
 print("Successfully configured all the admin Databases, LivePeer Streaming & GSheets.")
 
