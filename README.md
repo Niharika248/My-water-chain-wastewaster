@@ -32,11 +32,11 @@ The project is an attempt to come up with an innovative application rather than 
 
 The three major project components are as follows:
 
-- BlockChain
-- IoT
-- Computer Vision
-- LivePeer Online Streaming
-- WebDev
+- [BlockChain](#blockchain)
+- [IoT](#iot)
+- [Computer Vision](#computer-vision)
+- [LivePeer Online Streaming](#livepeer-online-streaming)
+- [WebDev](#webdev)
 
 ### BlockChain
 
