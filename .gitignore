@@ -48,3 +48,4 @@ flask-backend/venv/Lib/*
 /flask-backend/venv/modules/livepeer/LivePeerAssets/videos/*
 /flask-backend/venv/modules/livepeer/LivePeerAssets/videos/SparkHackClip.mp4
 /flask-backend/venv/modules/livepeer/LivePeerAssets/videos/SparkHackClip.mp4.lvix
+/flask-backend/venv/modules/livepeer/LivePeerAssets/credentials/API_Key.json
