@@ -1,4 +1,8 @@
 # My Water Chain Project
+
+[![Youtube Video](https://img.youtube.com/vi/mFHnrSxknFQ/0.jpg)](https://www.youtube.com/watch?v=mFHnrSxknFQ)
+
+
 ## About The Project
 My water chain is a waste-water management and monitoring project that embeds the security and transparency of BlockChain Technology along with the ease and effectiveness of IoT to reduce water exploitation and provide high-quality maintenance of wastewater.
 
@@ -103,7 +107,11 @@ The following methodologies are used for incorporating computer vision algorithm
 With the help of [LivePeer API Documentation](https://www.notion.so/livepeer/Livepeer-RTMP-V1-API-Documentation-f8ef916d84f6424b8c9f6fd8e8fa56ee#583b67fb6204454b90c87af39ac7a9b2), we have created a LivePeer Python library to post and get requests to perform streaming. For this you must need API key and save that key in `API_Key.json` as shown below:
 ![](assets/images/readme_editor/Apikeystructure.jpg)
 
-You may keep the other fields empty initially. Once you have entered the json fields, then you can run the following function to obtain Server, StreamKey, id, playbackID:
+> Update: No need of manually setting up the Key... Here's how you can automate it after just putting your API Key in the above Field:
+
+Once you type out `API Key` in the `API_Key.json` file nothing else needs to be done. `LivePeer.py` will automatically set up rest of the things for you! 😃😃😃
+
+~~You may keep the other fields empty initially. Once you have entered the json fields, then you can run the following function to obtain Server, StreamKey, id, playbackID:~~
 
 ```
 def configureKeys(path):
@@ -118,9 +126,9 @@ livepeer = LivePeer(apiKey,LivePeerjsonBody)
 livepeer.DisplayStreamingDetails()
 ```
 
-Once you run `DisplayStreamingDetails` You will get all the data about ***Server, StreamKey, id and playbackID***.
+~~Once you run `DisplayStreamingDetails` You will get all the data about ***Server, StreamKey, id and playbackID***.~~
 
-Now just paste it back to your `API_Key.json` before using `LivePeer` functions. In future I have planned to automate it further and make it even more friendly to push query.
+~~Now just paste it back to your `API_Key.json` before using `LivePeer` functions.~~ In future I have planned to automate it further and make it even more friendly to push query.
 
 All the functions provided are self explainatory and allow to perform different API actions. Once the configurations are done, you can use `FetchUserUrl` function to fetch the url which can be sent to user for streaming. And setting up streaming details can be viewed by `DisplayStreamingDetails`.
 
